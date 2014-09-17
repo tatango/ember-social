@@ -20,6 +20,6 @@ test('visiting /twitter', function() {
     //TODO: Use ember-testing waiter api to wait on async twitter stuff
     Ember.run.later(function() {
       equal(find('#simple iframe').length, 1, 'Renders Tweet button iframe');
-    }, 500);
+    }, 2500);
   });
 });
