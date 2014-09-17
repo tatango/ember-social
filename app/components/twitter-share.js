@@ -37,8 +37,7 @@ export default Ember.Component.extend({
           count: 'none',
           text: 'Sharing a URL using the Tweet Button'
         }).then(function (el) {
-          console.log("here you go", el);
-          console.log("Button created.");
+          Ember.Logger.debug('Twitter Share Button created.');
         });
     });
   }.on('didInsertElement')
