@@ -26,7 +26,6 @@ test('visiting /twitter', function() {
       'count-display-vertical'
     ];
 
-    //TODO: Use ember-testing waiter api to wait on async twitter stuff
     Ember.run.later(function() {
       exampleElementIds.forEach(function(exampleId) {
         equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
