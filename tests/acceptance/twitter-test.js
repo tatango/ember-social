@@ -17,9 +17,20 @@ test('visiting /twitter', function() {
 
   andThen(function() {
     equal(currentPath(), 'twitter');
+
+    var exampleElementIds = [
+      'no-parameters',
+      'custom-url-and-text',
+      'count-display-none',
+      'count-display-horizontal',
+      'count-display-vertical'
+    ];
+
     //TODO: Use ember-testing waiter api to wait on async twitter stuff
     Ember.run.later(function() {
-      equal(find('#simple iframe').length, 1, 'Renders Tweet button iframe');
+      exampleElementIds.forEach(function(exampleId) {
+        equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
+      });
     }, 2500);
   });
 });

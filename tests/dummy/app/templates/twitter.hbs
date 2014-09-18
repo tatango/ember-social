@@ -1,5 +1,52 @@
-<h1>Simple Twitter Share</h1>
+<h1>Twitter Share</h1>
 
-<div id='simple'>
+<h2>No Parameters</h2>
+
+<p>No parameters. Shares current url via standard Twitter UI share button.</p>
+
+<code>
+  \{{twitter-share}}
+</code>
+
+<div id='no-parameters'>
   {{twitter-share}}
+</div>
+
+
+<h2>Custom URL and Text</h2>
+
+<p>Specified url and text attributes. Shares specified url and specified text via standard Twitter UI share button.</p>
+
+<code>
+  \{{twitter-share url='http://example.com/share-things' text="Help, I'm stuck in a tweet factory."}}
+</code>
+
+<div id='custom-url-and-text'>
+  {{twitter-share url='http://example.com/share-things' text="Help, I'm stuck in a tweet factory."}}
+</div>
+
+<h2>Count Display</h2>
+
+<code>
+  \{{twitter-share count='none'}}
+</code>
+
+<div id='count-display-none'>
+  {{twitter-share count='none'}}
+</div>
+
+<code>
+  \{{twitter-share count='horizontal'}}
+</code>
+
+<div id='count-display-horizontal'>
+  {{twitter-share count='horizontal'}}
+</div>
+
+<code>
+  \{{twitter-share count='vertical'}}
+</code>
+
+<div id='count-display-vertical'>
+  {{twitter-share count='vertical'}}
 </div>

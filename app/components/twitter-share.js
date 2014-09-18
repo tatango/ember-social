@@ -26,16 +26,20 @@ function loadTwitter() {
 
 export default Ember.Component.extend({
 
+  count: 'none', // 'none', 'vertical', or 'horizontal'
+  url: null, // Defaults to current url
+  text: null, // Defaults to current page title
+
   createTwitterShareButton: function() {
     var self = this;
 
     loadTwitter().then(function(twttr) {
       twttr.widgets.createShareButton(
-        'http://example.com/',
+        self.get('url'),
         self.get('element'),
         {
-          count: 'none',
-          text: 'Sharing a URL using the Tweet Button'
+          count: self.get('count'),
+          text: self.get('text')
         }).then(function (el) {
           Ember.Logger.debug('Twitter Share Button created.');
         });
