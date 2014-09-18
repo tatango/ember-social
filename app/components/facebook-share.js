@@ -36,7 +36,7 @@ export default Ember.Component.extend({
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
                   // instead of the standard Facebook share button UI
   isCustomLink: Ember.computed.equal('tagName','a'),
-  useFaceboookUi: Ember.computed.not('isCustomLink'),
+  useFacebookUi: Ember.computed.not('isCustomLink'),
 
   /*
    * This is required when using tagName="a" (why the difference, I couldn't tell you).
@@ -55,7 +55,7 @@ export default Ember.Component.extend({
   createFacebookShareButton: function() {
     var self = this;
     loadFacebook(this.get('facebookAppId')).then(function(FB) {
-      if (self.get('useFaceboookUi')) {
+      if (self.get('useFacebookUi')) {
         var attrs = [];
         var url = self.get('url');
         if (url) {
@@ -74,7 +74,7 @@ export default Ember.Component.extend({
   }.on('didInsertElement'),
 
   showShareDialog: function(e){
-    if (this.get('useFaceboookUi')) { return; } // doesn't need a click handler
+    if (this.get('useFacebookUi')) { return; } // doesn't need a click handler
     FB.ui(
       {
         method: 'share',
