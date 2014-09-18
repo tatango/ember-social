@@ -50,3 +50,19 @@
 <div id='count-display-vertical'>
   {{twitter-share count='vertical'}}
 </div>
+
+<h2>With tagName of "a"</h2>
+
+<p>Render a link and use the Twitter SDK's web intent system.</p>
+
+<code>
+  \{{#twitter-share tagName="a" url='http://example.com/share-things' text="Help, I'm stuck in a tweet factory."}}<br>
+   Tweet this article<br>
+  \{{/twitter-share}}
+</code>
+
+<div id='block-provided'>
+  {{#twitter-share tagName="a" url='http://example.com/share-things' text="Help, I'm stuck in a tweet factory."}}
+   Tweet this article
+  {{/twitter-share}}
+</div>

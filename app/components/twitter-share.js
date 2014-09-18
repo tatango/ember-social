@@ -26,24 +26,49 @@ function loadTwitter() {
 
 export default Ember.Component.extend({
 
-  count: 'none', // 'none', 'vertical', or 'horizontal'
+  tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
+                  // instead of the standard Twitter share button UI
+  useWebIntent: Ember.computed.equal('tagName', 'a'),
+
   url: null, // Defaults to current url
   text: null, // Defaults to current page title
+  count: 'none', // valid values: 'none', 'vertical', or 'horizontal'
+                 // This option does nothing when tagName is 'a'
+
+  attributeBindings: ['webIntentUrl:href'],
+  webIntentUrl: function(){
+    if (!this.get('useWebIntent')) { return; }
+
+    var intentUrl = 'https://twitter.com/intent/tweet';
+    var intentParams = [];
+
+    var shareUrl = this.get('url');
+    if (shareUrl) {
+      intentParams.push('url=' + encodeURIComponent(shareUrl));
+    }
+
+    var shareText = this.get('text');
+    if (shareText) {
+      intentParams.push('text=' + encodeURIComponent(shareText));
+    }
+
+    return intentUrl + '?' + intentParams.join('&');
+  }.property('useWebIntent', 'url', 'text'),
 
   createTwitterShareButton: function() {
     var self = this;
-
     loadTwitter().then(function(twttr) {
-      twttr.widgets.createShareButton(
-        self.get('url'),
-        self.get('element'),
-        {
-          count: self.get('count'),
-          text: self.get('text')
-        }).then(function (el) {
-          Ember.Logger.debug('Twitter Share Button created.');
-        });
+      if (!self.get('useWebIntent')) {
+        twttr.widgets.createShareButton(
+          self.get('url'),
+          self.get('element'),
+          {
+            count: self.get('count'),
+            text: self.get('text')
+          }).then(function (/*el*/) {
+            Ember.Logger.debug('Twitter Share Button created.');
+          });
+      }
     });
   }.on('didInsertElement')
-
 });
