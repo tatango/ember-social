@@ -1,0 +1,41 @@
+<h1>LinkedIn Share</h1>
+
+<h2>No Parameters</h2>
+
+<p>No parameters. Shares current url via standard LinkedIn UI share button.</p>
+
+<code>
+  \{{linkedin-share}}
+</code>
+
+<div id='no-parameters'>
+  {{linkedin-share}}
+</div>
+
+<h2>Custom URL</h2>
+
+<p>Specified url. Shares specified url via standard LinkedIn UI share button.</p>
+
+<code>
+  \{{linkedin-share url='http://example.com/share-things'}}
+</code>
+
+<div id='custom-url'>
+  {{linkedin-share url='http://example.com/share-things'}}
+</div>
+
+<h2>With tagName of "a"</h2>
+
+<p>Render a link and use the LinkedIn SDK's programmatic share dialog.
+
+<code>
+  \{{#linkedin-share tagName="a" url='http://example.com/share-things'}}<br>
+   Share this article on LinkedIn<br>
+  \{{/linkedin-share}}
+</code>
+
+<div id='tag-name-a'>
+  {{#linkedin-share tagName="a" url='http://example.com/share-things'}}
+   Share this article on LinkedIn
+  {{/linkedin-share}}
+</div>
