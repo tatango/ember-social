@@ -1,7 +1,6 @@
-function Addon(project) {
-  this.project = project;
-}
-Addon.prototype.name = function() {
-  return 'ember-social';
-};
-module.exports = Addon;
+var Addon = require('ember-cli/lib/models/addon');
+
+var EmberSocialAddon = Addon.extend({
+  name: 'ember-social'
+});
+module.exports = EmberSocialAddon;
