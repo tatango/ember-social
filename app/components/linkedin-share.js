@@ -7,7 +7,7 @@ function loadLinkedin() {
 
   if (!linkedinScriptPromise) {
     linkedinScriptPromise = new Ember.RSVP.Promise(function(resolve/*, reject*/) {
-      Ember.$.getScript("http://platform.linkedin.com/in.js?async=true", function success() {
+      Ember.$.getScript("//platform.linkedin.com/in.js?async=true", function success() {
         IN.Event.on(IN, 'systemReady', resolve);
         IN.init();
       });
