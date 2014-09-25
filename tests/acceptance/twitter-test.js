@@ -12,11 +12,11 @@ module('Acceptance: Twitter', {
   }
 });
 
-test('visiting /twitter', function() {
-  visit('/twitter');
+test('visiting /twitter/share', function() {
+  visit('/twitter/share');
 
   andThen(function() {
-    equal(currentPath(), 'twitter');
+    equal(currentPath(), 'twitter.share');
 
     var exampleElementIds = [
       'no-parameters',
