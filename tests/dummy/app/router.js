@@ -5,9 +5,17 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('facebook');
-  this.route('twitter');
-  this.route('linkedin');
+  this.resource('facebook', function() {
+    this.route('facepile');
+    this.route('like');
+    this.route('share');
+  });
+  this.resource('twitter', function() {
+    this.route('share');
+  });
+  this.resource('linkedin', function() {
+    this.route('share');
+  });
 });
 
 export default Router;

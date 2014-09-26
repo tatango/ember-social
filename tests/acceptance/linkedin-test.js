@@ -12,11 +12,11 @@ module('Acceptance: LinkedIn', {
   }
 });
 
-test('visiting /linkedin', function() {
-  visit('/linkedin');
+test('share', function() {
+  visit('/linkedin/share');
 
   andThen(function() {
-    equal(currentPath(), 'linkedin');
+    equal(currentPath(), 'linkedin.share');
 
     var exampleElementIds = [
       'no-parameters',

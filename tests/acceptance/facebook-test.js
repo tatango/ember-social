@@ -12,11 +12,11 @@ module('Acceptance: Facebook', {
   }
 });
 
-test('visiting /facebook', function() {
-  visit('/facebook');
+test('share', function() {
+  visit('/facebook/share');
 
   andThen(function() {
-    equal(currentPath(), 'facebook');
+    equal(currentPath(), 'facebook.share');
 
     var exampleElementIds = [
       'no-parameters',
@@ -35,6 +35,50 @@ test('visiting /facebook', function() {
       });
 
       equal(find('#tag-name-a a').length, 1, 'Renders anchor tag');
+    }, 2500);
+  });
+});
+
+test('like', function() {
+  visit('/facebook/like');
+
+  andThen(function() {
+    equal(currentPath(), 'facebook.like');
+
+    var exampleElementIds = [
+      'no-parameters',
+      'custom-url',
+      'custom-action',
+      'layout-standard',
+      'layout-button-count',
+      'layout-button',
+      'layout-box-count'
+    ];
+
+    Ember.run.later(function() {
+      exampleElementIds.forEach(function(exampleId) {
+        equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
+      });
+    }, 2500);
+  });
+});
+
+test('facepile', function() {
+  visit('/facebook/facepile');
+
+  andThen(function() {
+    equal(currentPath(), 'facebook.facepile');
+
+    var exampleElementIds = [
+      'no-parameters',
+      'custom-url',
+      'custom-colorscheme'
+    ];
+
+    Ember.run.later(function() {
+      exampleElementIds.forEach(function(exampleId) {
+        equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
+      });
     }, 2500);
   });
 });

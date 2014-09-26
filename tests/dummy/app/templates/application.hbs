@@ -1,5 +1,20 @@
 <h2 id='title'>Welcome to Ember Social</h2>
-<div>
-  {{#link-to "facebook"}}Facebook Share{{/link-to}} | {{#link-to "twitter"}}Twitter Share{{/link-to}} | {{#link-to "linkedin"}}LinkedIn Share{{/link-to}}
-</div>
+
+<h3>Facebook</h3>
+<ul>
+  <li>{{#link-to "facebook.facepile"}}Facebook Facepile{{/link-to}}</li>
+  <li>{{#link-to "facebook.like"}}Facebook Like{{/link-to}}</li>
+  <li>{{#link-to "facebook.share"}}Facebook Share{{/link-to}}</li>
+</ul>
+
+<h3>Twitter</h3>
+<ul>
+  <li>{{#link-to "twitter.share"}}Twitter Share{{/link-to}}</li>
+</ul>
+
+<h3>LinkedIn</h3>
+<ul>
+  <li>{{#link-to "linkedin.share"}}LinkedIn Share{{/link-to}}</li>
+</ul>
+
 {{outlet}}
