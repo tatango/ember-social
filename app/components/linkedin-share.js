@@ -8,7 +8,7 @@ function loadLinkedin() {
   if (!linkedinScriptPromise) {
     linkedinScriptPromise = new Ember.RSVP.Promise(function(resolve/*, reject*/) {
       Ember.$.getScript("//platform.linkedin.com/in.js?async=true", function success() {
-        IN.Event.on(IN, 'systemReady', resolve);
+        IN.Event.on(IN, 'systemReady', Ember.run.bind(null, resolve));
         IN.init();
       });
     });
