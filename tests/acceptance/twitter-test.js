@@ -12,7 +12,7 @@ module('Acceptance: Twitter', {
   }
 });
 
-test('visiting /twitter/share', function() {
+test('share', function() {
   visit('/twitter/share');
 
   andThen(function() {

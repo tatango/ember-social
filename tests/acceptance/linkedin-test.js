@@ -12,7 +12,7 @@ module('Acceptance: LinkedIn', {
   }
 });
 
-test('visiting /linkedin/share', function() {
+test('share', function() {
   visit('/linkedin/share');
 
   andThen(function() {

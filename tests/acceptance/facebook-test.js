@@ -62,3 +62,23 @@ test('like', function() {
     }, 2500);
   });
 });
+
+test('facepile', function() {
+  visit('/facebook/facepile');
+
+  andThen(function() {
+    equal(currentPath(), 'facebook.facepile');
+
+    var exampleElementIds = [
+      'no-parameters',
+      'custom-url',
+      'custom-colorscheme'
+    ];
+
+    Ember.run.later(function() {
+      exampleElementIds.forEach(function(exampleId) {
+        equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
+      });
+    }, 2500);
+  });
+});
