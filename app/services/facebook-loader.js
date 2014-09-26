@@ -31,7 +31,9 @@ export default Ember.Object.extend({
             xfbml      : true,
             version    : 'v2.1'
           });
-          resolve(FB);
+          Ember.run(function(){
+            resolve(FB);
+          });
         };
 
         (function(d, s, id){

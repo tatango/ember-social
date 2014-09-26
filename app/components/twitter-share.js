@@ -17,7 +17,9 @@ function loadTwitter() {
       }(document, "script", "twitter-wjs"));
 
       twttr.ready(function(twttr) {
-        resolve(twttr);
+        Ember.run(function(){
+          resolve(twttr);
+        });
       });
     });
   }
