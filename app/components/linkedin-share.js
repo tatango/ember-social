@@ -27,6 +27,8 @@ export default Ember.Component.extend({
   createLinkedinShareButton: function() {
     var self = this;
     loadLinkedin().then(function() {
+      if (this._state !== 'inDOM') { return; }
+
       if (self.get('useLinkedinUi')) {
         var attrs = [];
         var url = self.get('url');
