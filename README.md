@@ -1,6 +1,8 @@
 # Ember-social
 
-This README outlines the details of collaborating on this Ember addon.
+[![Build Status](https://travis-ci.org/plyfe/ember-social.svg?branch=master)](https://travis-ci.org/plyfe/ember-social)
+
+Ember Social is a fledgling Ember component library for social sharing. This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
 
