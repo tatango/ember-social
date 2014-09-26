@@ -60,6 +60,7 @@ export default Ember.Component.extend({
   createTwitterShareButton: function() {
     var self = this;
     loadTwitter().then(function(twttr) {
+      if (self.state !== 'inDOM') { return; }
       if (!self.get('useWebIntent')) {
         twttr.widgets.createShareButton(
           self.get('url'),

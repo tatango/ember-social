@@ -17,6 +17,7 @@ export default Ember.Component.extend({
   createFacebookShareButton: function() {
     var self = this;
     this.loader.load().then(function(FB) {
+      if (self.state !== 'inDOM') { return; }
       if (self.get('useFacebookUi')) {
         var attrs = [];
         var url = self.get('url');
