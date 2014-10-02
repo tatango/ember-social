@@ -1,32 +1,7 @@
 import Ember from 'ember';
 
-/* globals twttr */
-
-var twitterScriptPromise;
-function loadTwitter() {
-
-  if (!twitterScriptPromise) {
-    twitterScriptPromise = new Ember.RSVP.Promise(function(resolve, reject) {
-      window.twttr = (function (d, s, id) {
-        var t, js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src= "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-        return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
-      }(document, "script", "twitter-wjs"));
-
-      twttr.ready(function(twttr) {
-        Ember.run(function(){
-          resolve(twttr);
-        });
-      });
-    });
-  }
-  return twitterScriptPromise;
-}
-
 export default Ember.Component.extend({
+  socialApiClient: null, // injected
 
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
                   // instead of the standard Twitter share button UI
@@ -57,21 +32,27 @@ export default Ember.Component.extend({
     return intentUrl + '?' + intentParams.join('&');
   }.property('useWebIntent', 'url', 'text'),
 
-  createTwitterShareButton: function() {
+  loadTwitterClient: function() {
     var self = this;
-    loadTwitter().then(function(twttr) {
+    this.socialApiClient.load().then(function(twttr) {
       if (self.state !== 'inDOM') { return; }
-      if (!self.get('useWebIntent')) {
-        twttr.widgets.createShareButton(
-          self.get('url'),
-          self.get('element'),
-          {
-            count: self.get('count'),
-            text: self.get('text')
-          }).then(function (/*el*/) {
-            Ember.Logger.debug('Twitter Share Button created.');
-          });
-      }
+      self.twttr = twttr;
+      self.trigger('twitterLoaded');
     });
-  }.on('didInsertElement')
+  }.on('didInsertElement'),
+
+  createTwitterShareButton: function() {
+    if (this.get('useWebIntent')) { return; }
+    this.twttr.widgets.createShareButton(
+      this.get('url'),
+      this.get('element'),
+      {
+        count: this.get('count'),
+        text: this.get('text')
+      }).then(function (/*el*/) {
+        Ember.Logger.debug('Twitter Share Button created.');
+      }
+    );
+  }.on('twitterLoaded')
+
 });
