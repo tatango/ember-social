@@ -1,23 +1,7 @@
 import Ember from 'ember';
 
-/* globals IN */
-
-var linkedinScriptPromise;
-function loadLinkedin() {
-
-  if (!linkedinScriptPromise) {
-    linkedinScriptPromise = new Ember.RSVP.Promise(function(resolve/*, reject*/) {
-      Ember.$.getScript("//platform.linkedin.com/in.js?async=true", function success() {
-        IN.Event.on(IN, 'systemReady', Ember.run.bind(null, resolve));
-        IN.init();
-      });
-    });
-  }
-  return linkedinScriptPromise;
-}
-
 export default Ember.Component.extend({
-
+  socialApiClient: null, // injected
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
                   // instead of the standard Linkedin share button UI
   isCustomLink: Ember.computed.equal('tagName','a'),
@@ -26,7 +10,9 @@ export default Ember.Component.extend({
   url: null, // Defaults to current url
   createLinkedinShareButton: function() {
     var self = this;
-    loadLinkedin().then(function() {
+    this.socialApiClient.load().then(function(IN) {
+      self.IN = IN;
+      self.shareHandlerName = IN.shareHandlerName;
       if (self.state !== 'inDOM') { return; }
       if (self.get('useLinkedinUi')) {
         var attrs = [];
@@ -34,6 +20,7 @@ export default Ember.Component.extend({
         if (url) {
           attrs.push('data-url="' + url + '"');
         }
+        attrs.push('data-onsuccess="' + self.shareHandlerName + '"');
         self.$().html('<script type="IN/Share" ' + attrs.join(' ') + '></script>');
         IN.parse(self.get('element'));
       } else {
@@ -44,9 +31,9 @@ export default Ember.Component.extend({
 
   showShareDialog: function(e){
     if (this.get('useLinkedinUi')) { return; } // doesn't need a click handler
-    IN.UI.Share().params({
+    this.IN.UI.Share().params({
       url: this.get('url')
-    }).place();
+    }).place().success(window[this.shareHandlerName]);
     e.preventDefault();
   }.on('click')
 });
