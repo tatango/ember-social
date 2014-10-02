@@ -11,8 +11,8 @@ export default Ember.Object.extend({
       var tracking = this.tracking;
       window[shareHandlerName] = function(sharedUrl) {
         if(!tracking) { return; }
-        if(tracking.linkedinShare) {
-          tracking.linkedinShare(sharedUrl);
+        if(tracking.shared) {
+          tracking.shared('linkedin', sharedUrl);
         }
       };
       linkedinScriptPromise = new Ember.RSVP.Promise(function(resolve/*, reject*/) {
@@ -24,5 +24,13 @@ export default Ember.Object.extend({
       });
     }
     return linkedinScriptPromise;
+  },
+
+  clicked: function(sharedUrl) {
+    var tracking = this.tracking;
+    if(!tracking) { return; }
+    if(tracking.clicked) {
+      tracking.clicked('linkedin', sharedUrl);
+    }
   }
 });

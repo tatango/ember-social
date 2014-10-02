@@ -33,14 +33,21 @@ export default Ember.Object.extend({
     var tracking = this.tracking;
     if(!tracking) { return; }
     this._onTweet = function(ev) {
-      if(tracking.tweet) { tracking.tweet(ev); }
+      if(tracking.shared) { tracking.shared('twitter', ev); }
+    }
+    this._onClick = function(ev) {
+      if(tracking.clicked) { tracking.clicked('twitter', ev); }
     }
     this.twttr.events.bind('tweet', this._onTweet);
+    this.twttr.events.bind('click', this._onClick);
   },
 
   unsubscribeFromTweetEvents: function() {
     if(this._onTweet) {
       this.twttr.events.unbind('tweet', this._onTweet);
+    }
+    if(this._onClick) {
+      this.twttr.events.unbind('click', this._onClick);
     }
   },
 

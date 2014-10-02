@@ -30,7 +30,10 @@ export default Ember.Component.extend({
   }.on('didInsertElement'),
 
   showShareDialog: function(e){
-    if (this.get('useLinkedinUi')) { return; } // doesn't need a click handler
+    this.socialApiClient.clicked(this.get('url') || window.location.href);
+    if (this.get('useLinkedinUi')) {
+      return;
+    }
     this.IN.UI.Share().params({
       url: this.get('url')
     }).place().success(window[this.shareHandlerName]);
