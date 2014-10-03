@@ -38,3 +38,7 @@ For more information on using ember-cli, visit [http://www.ember-cli.com/](http:
 
 * Implement click/share tracking for `{{facebook-like}}`
 * Implement click/share tracking for `{{facebook-facepile}}`
+
+## Contributors
+
+Thanks to Plyfe for sponsoring initial development and open-sourcing. ember-social authors include: Chris LoPresto, Luke Melia, and Danielle Adams.
