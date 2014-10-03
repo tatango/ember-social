@@ -13,7 +13,7 @@ export default Ember.Component.extend({
     this.socialApiClient.load().then(function(IN) {
       self.IN = IN;
       self.shareHandlerName = IN.shareHandlerName;
-      if (self.state !== 'inDOM') { return; }
+      if (self._state !== 'inDOM') { return; }
       if (self.get('useLinkedinUi')) {
         var attrs = [];
         var url = self.get('url');
@@ -30,13 +30,21 @@ export default Ember.Component.extend({
   }.on('didInsertElement'),
 
   showShareDialog: function(e){
+    var self = this;
     this.socialApiClient.clicked(this.get('url') || window.location.href);
-    if (this.get('useLinkedinUi')) {
-      return;
+    if (this.get('useLinkedinUi')) { return; }
+    function showDialog(IN) {
+      IN.UI.Share().params({
+        url: self.get('url')
+      }).place().success(window[self.shareHandlerName]);
     }
-    this.IN.UI.Share().params({
-      url: this.get('url')
-    }).place().success(window[this.shareHandlerName]);
+    if (this.IN) {
+      showDialog(this.IN);
+    } else {
+      this.socialApiClient.load().then(function(IN) {
+        showDialog(IN);
+      });
+    }
     e.preventDefault();
   }.on('click')
 });

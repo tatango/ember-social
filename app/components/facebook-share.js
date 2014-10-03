@@ -25,6 +25,7 @@ export default Ember.Component.extend({
   createFacebookShareButton: function() {
     var self = this;
     this.socialApiClient.load().then(function(FB) {
+      self.FB = FB;
       if (self._state !== 'inDOM') { return; }
       if (self.get('useFacebookUi')) {
         var attrs = [];
@@ -50,19 +51,29 @@ export default Ember.Component.extend({
       componentName: 'facebook-share'
     });
     if (this.get('useFacebookUi')) { return; } // doesn't need a click handler
-    FB.ui(
-      {
-        method: 'share',
-        href: this.get('url'),
-      },
-      function(response) {
-        if (response && !response.error_code) {
-          Ember.Logger.debug('Posting completed.');
-        } else {
-          Ember.Logger.error('Error while posting.');
+    var self = this;
+    function showDialog(FB) {
+      FB.ui(
+        {
+          method: 'share',
+          href: self.get('url'),
+        },
+        function(response) {
+          if (response && !response.error_code) {
+            Ember.Logger.debug('Posting completed.');
+          } else {
+            Ember.Logger.error('Error while posting.');
+          }
         }
-      }
-    );
+      );
+    }
+    if (this.FB) {
+      showDialog(this.FB);
+    } else {
+      this.socialApiClient.load().then(function(FB) {
+        showDialog(FB);
+      });
+    }
     e.preventDefault();
   }.on('click')
 });
