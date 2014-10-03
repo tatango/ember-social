@@ -6,6 +6,8 @@ We welcome contributions. Adding share buttons can be a tedious, annoying part o
 
 To install this addon in your ember-cli project, use `npm install ember-social`.
 
+Run the dummy app for examples and documentation.
+
 This README outlines the details of collaborating on this Ember addon.
 
 [![Build Status](https://travis-ci.org/plyfe/ember-social.svg?branch=master)](https://travis-ci.org/plyfe/ember-social)
