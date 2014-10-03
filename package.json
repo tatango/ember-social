@@ -32,8 +32,5 @@
     "ember-cli-qunit": "0.0.5",
     "express": "^4.8.5",
     "glob": "^4.0.5"
-  },
-  "dependencies": {
-    "ember-cli": "0.0.44"
   }
 }
