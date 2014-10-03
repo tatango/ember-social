@@ -3,6 +3,11 @@
 var twitterScriptPromise;
 
 export default Ember.Object.extend({
+  /*
+   * A tracking object implementing `shared(serviceName, payload)` and/or
+   * `clicked(serviceName, payload)` can be set on this object, and will
+   * be delegated to if present.
+   */
   tracking: null, // optional injection
   load: function() {
     var self = this;

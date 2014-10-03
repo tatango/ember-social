@@ -5,6 +5,11 @@ import Ember from 'ember';
 var linkedinScriptPromise;
 
 export default Ember.Object.extend({
+  /*
+   * A tracking object implementing `shared(serviceName, payload)` and/or
+   * `clicked(serviceName, payload)` can be set on this object, and will
+   * be delegated to if present.
+   */
   tracking: null, // optional injection
   load: function() {
     if (!linkedinScriptPromise) {
@@ -13,7 +18,7 @@ export default Ember.Object.extend({
       window[shareHandlerName] = function(sharedUrl) {
         if(!tracking) { return; }
         if(tracking.shared) {
-          tracking.shared('linkedin', sharedUrl);
+          tracking.shared('linkedin',  { url: sharedUrl });
         }
       };
       linkedinScriptPromise = new Ember.RSVP.Promise(function(resolve/*, reject*/) {
@@ -31,7 +36,7 @@ export default Ember.Object.extend({
     var tracking = this.tracking;
     if(!tracking) { return; }
     if(tracking.clicked) {
-      tracking.clicked('linkedin', sharedUrl);
+      tracking.clicked('linkedin', { url: sharedUrl });
     }
   }
 });
