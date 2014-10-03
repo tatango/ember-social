@@ -3,7 +3,7 @@ import Ember from 'ember';
 /* globals FB */
 
 export default Ember.Component.extend({
-  loader: null, // injected
+  socialApiClient: null, // injected
 
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
                   // instead of the standard Facebook share button UI
@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 
   createFacebookShareButton: function() {
     var self = this;
-    this.loader.load().then(function(FB) {
+    this.socialApiClient.load().then(function(FB) {
       if (self.state !== 'inDOM') { return; }
       if (self.get('useFacebookUi')) {
         var attrs = [];

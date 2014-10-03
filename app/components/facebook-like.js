@@ -3,7 +3,7 @@ import Ember from 'ember';
 /* globals FB */
 
 export default Ember.Component.extend({
-  loader: null, // injected
+  socialApiClient: null, // injected
 
   url: null, // Defaults to current url
   text: null, // Defaults to current page title
@@ -12,7 +12,7 @@ export default Ember.Component.extend({
 
   createFacebookLikeButton: function() {
     var self = this;
-    this.loader.load().then(function(FB) {
+    this.socialApiClient.load().then(function(FB) {
       if (self.state !== 'inDOM') { return; }
       var attrs = [];
       var url = self.get('url');

@@ -3,14 +3,14 @@ import Ember from 'ember';
 /* globals FB */
 
 export default Ember.Component.extend({
-  loader: null, //injected
+  socialApiClient: null, //injected
 
   url: null, // Defaults to specified Facebook app_id
   'fb-colorscheme': 'light', // Valid options: 'light' or 'dark'
 
   createFacebookFacepile: function() {
     var self = this;
-    this.loader.load().then(function(FB) {
+    this.socialApiClient.load().then(function(FB) {
       if (self.state !== 'inDOM') { return; }
       var attrs = [];
       var url = self.get('url');
