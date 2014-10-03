@@ -1,0 +1,71 @@
+<table class="tracking" border="1">
+  <tr>
+    <td rowspan="2">
+      Twitter
+    </td>
+    <td>
+      Clicks
+    </td>
+    <td>
+      {{twitterClickCount}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Shares
+    </td>
+    <td>
+      {{twitterShareCount}}
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="2">
+      LinkedIn
+    </td>
+    <td>
+      Clicks
+    </td>
+    <td>
+      {{linkedinClickCount}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Shares
+    </td>
+    <td>
+      {{linkedinShareCount}}
+    </td>
+  </tr>
+  <tr>
+    <td rowspan="2">
+      Facebook
+    </td>
+    <td>
+      Clicks
+    </td>
+    <td>
+      {{facebookClickCount}}<sup>*</sup>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Shares
+    </td>
+    <td>
+      N/A<sup>*</sup>
+    </td>
+  </tr>
+</table>
+
+<h3>About Tracking</h3>
+
+<div class="tracking-docs">
+
+  <p>In this dummy app, we define a Tracking service (see <code>tests/dummy/app/services/social-tracking.js</code>), whose results are shown here. Results are for this page load only, just for demonstration purposes. Normally, you would define a tracking service which delegated to your server and/or the analytics provider of your choice.</p>
+
+  <p>The tracking service you define should be injected onto the api-client classes as demonstrated in this dummy app. (See <code>tests/dummy/app/initializers/tracking.js</code>).</p>
+
+  <p>* The <code>\{{facebook-share}}</code> component is is subject to the Facebook SDK's restrictions as to what can be tracked. Specifically, click tracking is only
+  available when using the component with <code>tagName="a"</code> (i.e. not the standard Facebook UI), and share tracking is not available. (In theory, this addon could support share tracking in the case that the user grants or has previously granted your Facebook app <code>publish_action</code> permission.)</p>
+</div>

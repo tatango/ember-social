@@ -5,6 +5,7 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('tracking');
 });
 
 export default Router;

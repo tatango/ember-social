@@ -8,7 +8,15 @@ code {
   margin: 10px 0 20px;
   padding: 10px;
 }
+.tracking-docs code {
+  display:inline-block;
+  margin: 0;
+  padding: 5px;
+}
 
 #custom-colorscheme {
   background: black;
+}
+table.tracking td {
+  padding:5px;
 }

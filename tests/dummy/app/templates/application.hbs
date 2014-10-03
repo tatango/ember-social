@@ -1,20 +1,32 @@
 <h2 id='title'>Welcome to Ember Social</h2>
 
-<h3>Facebook</h3>
-<ul>
-  <li>{{#link-to "facebook.facepile"}}Facebook Facepile{{/link-to}}</li>
-  <li>{{#link-to "facebook.like"}}Facebook Like{{/link-to}}</li>
-  <li>{{#link-to "facebook.share"}}Facebook Share{{/link-to}}</li>
-</ul>
+<div style="border:1px solid #ccc; margin-bottom:15px; padding-left:1%">
+  <div style="display:inline-block; width:24%">
+    <h3>Facebook</h3>
+    <ul>
+      <li>{{#link-to "facebook.facepile"}}Facebook Facepile{{/link-to}}</li>
+      <li>{{#link-to "facebook.like"}}Facebook Like{{/link-to}}</li>
+      <li>{{#link-to "facebook.share"}}Facebook Share{{/link-to}}</li>
+    </ul>
+  </div>
 
-<h3>Twitter</h3>
-<ul>
-  <li>{{#link-to "twitter.share"}}Twitter Share{{/link-to}}</li>
-</ul>
+  <div style="display:inline-block; width:24%">
+    <h3>Twitter</h3>
+    <ul>
+      <li>{{#link-to "twitter.share"}}Twitter Share{{/link-to}}</li>
+    </ul>
+  </div>
 
-<h3>LinkedIn</h3>
-<ul>
-  <li>{{#link-to "linkedin.share"}}LinkedIn Share{{/link-to}}</li>
-</ul>
+  <div style="display:inline-block; width:24%">
+    <h3>LinkedIn</h3>
+    <ul>
+      <li>{{#link-to "linkedin.share"}}LinkedIn Share{{/link-to}}</li>
+    </ul>
+  </div>
+
+  <div style="display:inline-block; width:24%">
+    {{#link-to "tracking"}}Click and Share Tracking{{/link-to}}
+  </div>
+</div>
 
 {{outlet}}

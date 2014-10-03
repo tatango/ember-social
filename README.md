@@ -14,10 +14,14 @@ This README outlines the details of collaborating on this Ember addon.
 * `npm install`
 * `bower install`
 
-## Running
+# Usage
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+The dummy app demonstrates and explains usage quite well.
+
+  * `ember server`
+  * Visit your app at http://localhost:4200.
+
+To use in your app, follow the instructions for using ember-cli addons at embercli.com.
 
 ## Running Tests
 

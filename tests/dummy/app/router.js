@@ -16,6 +16,7 @@ Router.map(function() {
   this.resource('linkedin', function() {
     this.route('share');
   });
+  this.route('tracking');
 });
 
 export default Router;
