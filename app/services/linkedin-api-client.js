@@ -5,6 +5,7 @@ import Ember from 'ember';
 var linkedinScriptPromise;
 
 export default Ember.Object.extend({
+  tracking: null, // optional injection
   load: function() {
     if (!linkedinScriptPromise) {
       var shareHandlerName = 'linkedin_share_' + Ember.guidFor(this);

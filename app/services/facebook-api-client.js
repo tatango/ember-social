@@ -5,6 +5,8 @@ import Ember from 'ember';
 var facebookScriptPromise;
 
 export default Ember.Object.extend({
+  tracking: null, // optional injection
+
   /*
    * This is required for certain uses of plugins, e.g. when using tagName="a"
    * for the facebook-share component.
@@ -46,5 +48,14 @@ export default Ember.Object.extend({
       });
     }
     return facebookScriptPromise;
+  },
+
+  clicked: function(shareUrl) {
+    var tracking = this.tracking;
+    if(!tracking) { return; }
+    if(tracking.clicked) {
+      tracking.clicked('facebook', shareUrl);
+    }
+
   }
 });

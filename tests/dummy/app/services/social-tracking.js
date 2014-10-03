@@ -9,5 +9,4 @@ export default Ember.Object.extend({
   clicked: function(serviceName, payload) {
     console.log('clicked', serviceName, payload);
   }
-
 });

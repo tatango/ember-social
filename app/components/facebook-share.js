@@ -2,6 +2,14 @@ import Ember from 'ember';
 
 /* globals FB */
 
+/*
+ * Show a button that pops up the Facebook Share dialog.
+ *
+ * When used with a `tagName` of `a`, it supports click tracking by
+ * delegating to the socialApiClient, which can be provided with a
+ * tracking object. When using without specifying a tagName, click
+ * tracking is not supported due to restrictions of the Facebook SDK.
+ */
 export default Ember.Component.extend({
   socialApiClient: null, // injected
 
@@ -17,7 +25,7 @@ export default Ember.Component.extend({
   createFacebookShareButton: function() {
     var self = this;
     this.socialApiClient.load().then(function(FB) {
-      if (self.state !== 'inDOM') { return; }
+      if (self._state !== 'inDOM') { return; }
       if (self.get('useFacebookUi')) {
         var attrs = [];
         var url = self.get('url');
@@ -37,6 +45,7 @@ export default Ember.Component.extend({
   }.on('didInsertElement'),
 
   showShareDialog: function(e){
+    this.socialApiClient.clicked(this.get('url'));
     if (this.get('useFacebookUi')) { return; } // doesn't need a click handler
     FB.ui(
       {
