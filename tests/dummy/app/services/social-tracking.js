@@ -7,6 +7,7 @@ export default Ember.Object.extend({
   linkedinShareCount: 0,
   facebookClickCount: 0,
   facebookShareCount: 0,
+  emailClickCount: 0,
 
   shared: function(serviceName, payload) {
     console.log('shared', serviceName, payload);

@@ -16,6 +16,9 @@ Router.map(function() {
   this.resource('linkedin', function() {
     this.route('share');
   });
+  this.resource('email', function() {
+    this.route('share');
+  });
   this.route('tracking');
 });
 

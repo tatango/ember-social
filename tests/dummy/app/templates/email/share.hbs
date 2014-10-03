@@ -1,0 +1,31 @@
+<h1>Email Share</h1>
+
+<h2>No Parameters</h2>
+
+<p>No parameters. Uses document title as subject and current URL as body.</p>
+
+<code>
+  \{{#email-share}}
+   Share via email.
+  \{{/email-share}}
+</code>
+
+<div id='no-parameters'>
+  {{#email-share}}Share via email.{{/email-share}}
+</div>
+
+
+<h2>Custom URL and Text</h2>
+
+<p>Specified subject, body and url attributes. Shares specified subject, body and url via mailto anchor tag.</p>
+
+<code>
+  \{{#email-share subject="Check out this link" url='http://example.com/share-things' body="Help, I'm stuck in a tweet factory."}}<br>
+     Share via email.<br>
+  \{{/email-share}}
+</code>
+
+<div id='custom-url-and-text'>
+  {{#email-share subject="Check out this link" url='http://example.com/share-things' body="Help, I'm stuck in a tweet factory."}}Share via email.{{/email-share}}
+</div>
+
