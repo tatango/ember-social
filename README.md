@@ -4,6 +4,8 @@ ember-social is a fledgling Ember component library for social sharing widgets. 
 
 We welcome contributions. Adding share buttons can be a tedious, annoying part of a front-end developers. Let's make this library make it easy for everyone.
 
+To install this addon in your ember-cli project, use `npm install ember-social`.
+
 This README outlines the details of collaborating on this Ember addon.
 
 [![Build Status](https://travis-ci.org/plyfe/ember-social.svg?branch=master)](https://travis-ci.org/plyfe/ember-social)
