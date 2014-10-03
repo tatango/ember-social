@@ -33,3 +33,8 @@ To use in your app, follow the instructions for using ember-cli addons at emberc
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+## TODO
+
+* Implement click/share tracking for `{{facebook-like}}`
+* Implement click/share tracking for `{{facebook-facepile}}`
