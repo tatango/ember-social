@@ -50,11 +50,11 @@ export default Ember.Object.extend({
     return facebookScriptPromise;
   },
 
-  clicked: function(shareUrl) {
+  clicked: function(payload) {
     var tracking = this.tracking;
     if(!tracking) { return; }
     if(tracking.clicked) {
-      tracking.clicked('facebook', shareUrl);
+      tracking.clicked('facebook', payload);
     }
 
   }

@@ -45,7 +45,10 @@ export default Ember.Component.extend({
   }.on('didInsertElement'),
 
   showShareDialog: function(e){
-    this.socialApiClient.clicked(this.get('url'));
+    this.socialApiClient.clicked({
+      url: this.get('url'),
+      componentName: 'facebook-share'
+    });
     if (this.get('useFacebookUi')) { return; } // doesn't need a click handler
     FB.ui(
       {
