@@ -1,8 +1,12 @@
-# Ember-social
+# ember-social
+
+ember-social is a fledgling Ember component library for social sharing widgets. Think Tweet buttons, Facebook like buttons, Linked In share buttons, etc.
+
+We welcome contributions. Adding share buttons can be a tedious, annoying part of a front-end developers. Let's make this library make it easy for everyone.
+
+This README outlines the details of collaborating on this Ember addon.
 
 [![Build Status](https://travis-ci.org/plyfe/ember-social.svg?branch=master)](https://travis-ci.org/plyfe/ember-social)
-
-Ember Social is a fledgling Ember component library for social sharing. This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
 
