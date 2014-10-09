@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   createFacebookFacepile: function() {
     var self = this;
     this.socialApiClient.load().then(function(FB) {
-      if (self.state !== 'inDOM') { return; }
+      if (self._state !== 'inDOM') { return; }
       var attrs = [];
       var url = self.get('url');
       if (url) {

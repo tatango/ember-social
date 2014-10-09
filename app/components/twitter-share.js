@@ -35,7 +35,7 @@ export default Ember.Component.extend({
   loadTwitterClient: function() {
     var self = this;
     this.socialApiClient.load().then(function(twttr) {
-      if (self.state !== 'inDOM') { return; }
+      if (self._state !== 'inDOM') { return; }
       self.twttr = twttr;
       self.trigger('twitterLoaded');
     });
