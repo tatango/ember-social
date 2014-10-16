@@ -9,6 +9,7 @@ Router.map(function() {
     this.route('facepile');
     this.route('like');
     this.route('share');
+    this.route('feed');
   });
   this.resource('twitter', function() {
     this.route('share');

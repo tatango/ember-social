@@ -39,6 +39,33 @@ test('share', function() {
   });
 });
 
+test('feed', function() {
+  visit('/facebook/feed');
+
+  andThen(function() {
+    equal(currentPath(), 'facebook.feed');
+
+    var exampleElementIds = [
+      'no-parameters',
+      'custom-url',
+      'layout-icon-link',
+      'layout-box-count',
+      'layout-button-count',
+      'layout-button',
+      'layout-link',
+      'layout-icon'
+    ];
+
+    Ember.run.later(function() {
+      exampleElementIds.forEach(function(exampleId) {
+        equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
+      });
+
+      equal(find('#tag-name-a a').length, 1, 'Renders anchor tag');
+    }, 2500);
+  });
+});
+
 test('like', function() {
   visit('/facebook/like');
 

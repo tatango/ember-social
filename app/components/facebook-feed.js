@@ -3,7 +3,8 @@ import Ember from 'ember';
 /* globals FB */
 
 /*
- * Show a button that pops up the Facebook Share dialog.
+ * Show a button that pops up the Facebook Feed (DEPRECATED) dialog.
+ * DEPRECATED BUT STILL WORKS...USED ARE YOUR OWN RISK
  *
  * When used with a `tagName` of `a`, it supports click tracking by
  * delegating to the socialApiClient, which can be provided with a
@@ -19,10 +20,13 @@ export default Ember.Component.extend({
   useFacebookUi: Ember.computed.not('isCustomLink'),
 
   url: null, // Defaults to current url
-  text: null, // Defaults to current page title
+  image: null, // Defaults to og meta information
+  title: null, // Defaults to og meta information
+  subtitle: null, // Defaults url
+  description: null, // Defaults to og meta information
   "fb-layout": "icon_link", // Valid options: "box_count", "button_count", "button", "link", "icon_link", or "icon"
 
-  createFacebookShareButton: function() {
+  createFacebookFeedButton: function() {
     var self = this;
     this.socialApiClient.load().then(function(FB) {
       self.FB = FB;
@@ -55,8 +59,12 @@ export default Ember.Component.extend({
     function showDialog(FB) {
       FB.ui(
         {
-          method: 'share',
-          href: self.get('url')
+          method: 'feed',
+          link: self.get('url'),
+          picture: self.get('image'),
+          caption: self.get('subtitle') || self.get('url'),
+          description: self.get('description'),
+          name: self.get('title')
         },
         function(response) {
           if (response && !response.error_code) {

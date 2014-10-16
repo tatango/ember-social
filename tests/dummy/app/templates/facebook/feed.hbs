@@ -1,0 +1,93 @@
+<h1>Facebook Feed</h1>
+
+<h2>No Parameters</h2>
+
+<p>No parameters. Shares current url via standard Facebook UI share button.</p>
+
+<code>
+  \{{facebook-feed}}
+</code>
+
+<div id='no-parameters'>
+  {{facebook-feed}}
+</div>
+
+<h2>Custom URL</h2>
+
+<p>Specified url. Shares specified url via standard Facebook UI share button.</p>
+
+<code>
+  \{{facebook-feed url='http://example.com/share-things'}}
+</code>
+
+<div id='custom-url'>
+  {{facebook-feed url='https://example.com/share-things'}}
+</div>
+
+<h2>Layout</h2>
+
+<code>
+  \{{facebook-feed fb-layout='icon_link'}}
+</code>
+
+<div id='layout-icon-link'>
+  {{facebook-feed fb-layout='icon_link'}}
+</div>
+
+<code>
+  \{{facebook-feed fb-layout='box_count'}}
+</code>
+
+<div id='layout-box-count'>
+  {{facebook-feed fb-layout='box_count'}}
+</div>
+
+<code>
+  \{{facebook-feed fb-layout='button_count'}}
+</code>
+
+<div id='layout-button-count'>
+  {{facebook-feed fb-layout='button_count'}}
+</div>
+
+<code>
+  \{{facebook-feed fb-layout='button'}}
+</code>
+
+<div id='layout-button'>
+  {{facebook-feed fb-layout='button'}}
+</div>
+
+<code>
+  \{{facebook-feed fb-layout='link'}}
+</code>
+
+<div id='layout-link'>
+  {{facebook-feed fb-layout='link'}}
+</div>
+
+<code>
+  \{{facebook-feed fb-layout='icon'}}
+</code>
+
+<div id='layout-icon'>
+  {{facebook-feed fb-layout='icon'}}
+</div>
+
+<h2>With tagName of "a"</h2>
+
+<p>Render a link and use the Facebook SDK's programmatic share dialog.
+<em>Note: Facebook App ID must be valid for the current domain for this version to work.</em></p>
+
+<code>
+  \{{#facebook-feed tagName="a" url='http://example.com/share-things' }}<br>
+   Share this article on Facebook<br>
+  \{{/facebook-feed}}
+</code>
+
+<div id='tag-name-a'>
+  {{#facebook-feed tagName="a" url='http://example.com/share-things'}}
+   Share this article on Facebook
+  {{/facebook-feed}}
+</div>
+
