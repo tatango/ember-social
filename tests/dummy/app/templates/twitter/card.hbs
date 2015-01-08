@@ -1,3 +1,21 @@
-<h1>Twitter Tweet Embed</h1>
+<h1>Twitter Embedded Tweets</h1>
 
-{{twitter-card tweet-id="537294958378905600"}}
+<h2>Basic Card</h2>
+
+You have to specify tweet-id parameter to embed a card. The default card does not show photos or videos.
+
+<code>
+  \{{twitter-card tweet-id="463440424141459456"}}
+</code>
+
+{{twitter-card tweet-id="463440424141459456"}}
+
+<h2>Card with Media</h2>
+
+To display media, set <strong>cards</strong> parameter to false.
+
+{{twitter-card tweet-id="463440424141459456" cards=null}}
+
+<code>
+  \{{twitter-card tweet-id="463440424141459456" cards=false}}
+</code>

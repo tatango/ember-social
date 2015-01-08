@@ -36,3 +36,15 @@ test('share', function() {
     }, 2500);
   });
 });
+
+test('tweet', function(){
+  visit('/twitter/card');
+
+  andThen(function(){
+    equal(currentPath(), 'twitter.card');
+
+    Ember.run.later(function(){
+      equal(find('.twitter-tweet').length, 2, 'Two twitter tweets were rendered.');
+    }, 2500);
+  });
+});
