@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   socialApiClient: null, // injected
 
   "tweet-id": null, // required - id of the tweet that you want to embed
-  cards: null, // When set to hidden, links in a Tweet are not expanded to photo, video, or link previews.
+  cards: "hidden", // When set to hidden, links in a Tweet are not expanded to photo, video, or link previews.
   conversation: null, // When set to none, only the cited Tweet will be displayed even if it is in reply to another Tweet.
   lang: null, // A supported Twitter language code. https://dev.twitter.com/overview/general/adding-international-support-to-your-apps,
   dnt: null, // When set to true, the Tweet and its embedded page do not influence Twitter targeting including suggested accounts. https://support.twitter.com/articles/20169421,
@@ -35,7 +35,7 @@ export default Ember.Component.extend({
         width: this.get('width'),
         align: this.get('align')
       }).then(function (/*el*/) {
-        Ember.Logger.debug('Twitter Tweet Embed created.');
+        Ember.Logger.debug('Twitter Embedded Tweet inserted.');
       });
     }
   }.on('twitterLoaded')
