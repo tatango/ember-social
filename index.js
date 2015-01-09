@@ -1,6 +1,6 @@
-var Addon = require('ember-cli/lib/models/addon');
+/* jshint node: true */
+'use strict';
 
-var EmberSocialAddon = Addon.extend({
+module.exports = {
   name: 'ember-social'
-});
-module.exports = EmberSocialAddon;
+};
