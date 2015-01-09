@@ -2,9 +2,9 @@
   "name": "ember-social",
   "version": "0.0.5",
   "dependencies": {
-    "handlebars": "~1.3.0",
+    "handlebars": ">= 2.0.0 < 3.0.0",
     "jquery": "^1.11.1",
-    "ember": "1.8.1",
+    "ember": "1.9.1",
     "ember-data": "1.0.0-beta.12",
     "ember-resolver": "~0.1.11",
     "loader.js": "stefanpenner/loader.js#1.0.1",
@@ -16,7 +16,6 @@
     "qunit": "~1.15.0"
   },
   "resolutions": {
-    "ember": "1.7.0",
-    "handlebars": "~1.3.0"
+    "handlebars": ">= 2.0.0 < 3.0.0"
   }
 }
