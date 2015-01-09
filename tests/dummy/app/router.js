@@ -12,6 +12,7 @@ Router.map(function() {
   });
   this.resource('twitter', function() {
     this.route('share');
+    this.route('card');
   });
   this.resource('linkedin', function() {
     this.route('share');
