@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   isCustomLink: Ember.computed.equal('tagName','a'),
   useLinkedinUi: Ember.computed.not('isCustomLink'),
 
+  count: null, //can be 'top' or 'right'
   url: null, // Defaults to current url
   createLinkedinShareButton: function() {
     var self = this;
@@ -17,8 +18,12 @@ export default Ember.Component.extend({
       if (self.get('useLinkedinUi')) {
         var attrs = [];
         var url = self.get('url');
+        var count = self.get('count');
         if (url) {
           attrs.push('data-url="' + url + '"');
+        }
+        if(count) {
+          attrs.push('data-counter="' + count +'"');
         }
         attrs.push('data-onsuccess="' + self.shareHandlerName + '"');
         self.$().html('<script type="IN/Share" ' + attrs.join(' ') + '></script>');
