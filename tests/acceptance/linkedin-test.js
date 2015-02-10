@@ -20,7 +20,8 @@ test('share', function() {
 
     var exampleElementIds = [
       'no-parameters',
-      'custom-url'
+      'custom-url',
+      'show-count'
     ];
 
     Ember.run.later(function() {

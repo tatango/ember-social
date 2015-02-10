@@ -12,6 +12,7 @@
   {{linkedin-share}}
 </div>
 
+
 <h2>Custom URL</h2>
 
 <p>Specified url. Shares specified url via standard LinkedIn UI share button.</p>
@@ -22,6 +23,18 @@
 
 <div id='custom-url'>
   {{linkedin-share url='http://example.com/share-things'}}
+</div>
+
+<h2>Display Share count</h2>
+
+<p>Count can be displayed either on top or on the right of the button.</p>
+
+<code>
+  \{{linkedin-share count="top"}}<br>
+</code>
+
+<div id='show-count'>
+  {{linkedin-share count="top"}}
 </div>
 
 <h2>With tagName of "a"</h2>
