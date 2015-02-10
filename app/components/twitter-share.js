@@ -9,28 +9,34 @@ export default Ember.Component.extend({
 
   url: null, // Defaults to current url
   text: null, // Defaults to current page title
+  via: null, // Attribute the source of a Tweet to a Twitter username.
+  related: null, // A comma-separated list of accounts related to the content of the shared URI.
+  hashtags: null, // A comma-separated list of hashtags to be appended to default Tweet text.
   count: 'none', // valid values: 'none', 'vertical', or 'horizontal'
                  // This option does nothing when tagName is 'a'
 
   attributeBindings: ['webIntentUrl:href'],
   webIntentUrl: function(){
+    var intentUrl = 'https://twitter.com/intent/tweet',
+      intentParams = [],
+      params = [
+        {name: 'url', value: this.get('url')},
+        {name: 'text', value: this.get('text')},
+        {name: 'via', value: this.get('via')},
+        {name: 'related', value: this.get('related')},
+        {name: 'hashtags', value: this.get('hashtags')}
+      ];
+
     if (!this.get('useWebIntent')) { return; }
 
-    var intentUrl = 'https://twitter.com/intent/tweet';
-    var intentParams = [];
-
-    var shareUrl = this.get('url');
-    if (shareUrl) {
-      intentParams.push('url=' + encodeURIComponent(shareUrl));
-    }
-
-    var shareText = this.get('text');
-    if (shareText) {
-      intentParams.push('text=' + encodeURIComponent(shareText));
-    }
+    params.forEach(function(param) {
+      if (param.value) {
+        intentParams.push(param.name + '=' + encodeURIComponent(param.value));
+      }
+    });
 
     return intentUrl + '?' + intentParams.join('&');
-  }.property('useWebIntent', 'url', 'text'),
+  }.property('useWebIntent', 'url', 'text', 'via', 'related', 'hashtags'),
 
   loadTwitterClient: function() {
     var self = this;
