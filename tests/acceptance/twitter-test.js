@@ -32,7 +32,7 @@ test('share', function() {
       });
 
       equal(find('#block-provided a').length, 1, 'Renders web intent style');
-      equal(find('#block-provided a').attr('href'), "https://twitter.com/intent/tweet?url=http%3A%2F%2Fexample.com%2Fshare-things&text=Help%2C%20I'm%20stuck%20in%20a%20tweet%20factory.", 'Renders href');
+      equal(find('#block-provided a').attr('href'), "https://twitter.com/intent/tweet?url=http%3A%2F%2Fexample.com%2Fshare-things&text=Help%2C%20I'm%20stuck%20in%20a%20tweet%20factory.&via=tweetfactory&related=tweet%2Cfactory&hashtags=tweet%2Cfactory", 'Renders href');
     }, 2500);
   });
 });
