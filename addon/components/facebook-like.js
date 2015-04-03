@@ -4,7 +4,6 @@ export default Ember.Component.extend({
   socialApiClient: null, // injected
 
   url: null, // Defaults to current url
-  text: null, // Defaults to current page title
   'fb-layout': 'standard', // Valid options: 'standard', 'button_count', 'button', or 'box_count'
   'fb-action': 'like', // Valid options: 'like' or 'recommend'
 

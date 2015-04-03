@@ -17,7 +17,6 @@ export default Ember.Component.extend({
   useFacebookUi: Ember.computed.not('isCustomLink'),
 
   url: null, // Defaults to current url
-  text: null, // Defaults to current page title
   "fb-layout": "icon_link", // Valid options: "box_count", "button_count", "button", "link", "icon_link", or "icon"
 
   createFacebookShareButton: Ember.on('didInsertElement', function() {
