@@ -1,6 +1,6 @@
 {
   "name": "ember-social",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
