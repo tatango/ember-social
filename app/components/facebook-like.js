@@ -10,7 +10,7 @@ export default Ember.Component.extend({
   'fb-layout': 'standard', // Valid options: 'standard', 'button_count', 'button', or 'box_count'
   'fb-action': 'like', // Valid options: 'like' or 'recommend'
 
-  createFacebookLikeButton: function() {
+  createFacebookLikeButton: Ember.on('didInsertElement', function() {
     var self = this;
     this.socialApiClient.load().then(function(FB) {
       if (self._state !== 'inDOM') { return; }
@@ -30,6 +30,6 @@ export default Ember.Component.extend({
       self.$().html('<div class="fb-like" ' + attrs.join(' ') +'></div>');
       FB.XFBML.parse(self.get('element'));
     });
-  }.on('didInsertElement')
+  })
 
 });

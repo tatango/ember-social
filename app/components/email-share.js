@@ -5,24 +5,24 @@ export default Ember.Component.extend({
   subject: '',
   body: null,
   url: '',
-  bodyText: function(){
+  bodyText: Ember.computed('body', function(){
     var body = this.get('body');
     return body ? body + '\n\n' : '';
-  }.property('body'),
-  href: function(){
+  }),
+  href: Ember.computed('subject', 'bodyText', 'shareUrl', function(){
     var subject = encodeURIComponent(this.get('subject'));
     var body = encodeURIComponent(this.get('bodyText') + this.get('url'));
     return  "mailto:?subject="+ subject + "&body="+ body;
-  }.property('subject', 'bodyText', 'shareUrl'),
+  }),
   tagName: 'a',
   linkTarget: '_top',
   attributeBindings: ['linkTarget:target', 'href'],
-  trackClick: function(){
+  trackClick: Ember.on('click', function(){
     if (this.tracking && this.tracking.clicked) {
 
       this.tracking.clicked('email', {
         url: this.get('shareUrl')
-      })
+      });
     }
-  }.on('click')
+  })
 });

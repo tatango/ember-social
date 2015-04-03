@@ -1,5 +1,7 @@
 /* globals twttr */
 
+import Ember from 'ember';
+
 var twitterScriptPromise;
 
 export default Ember.Object.extend({

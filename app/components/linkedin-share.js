@@ -9,7 +9,7 @@ export default Ember.Component.extend({
 
   count: null, //can be 'top' or 'right'
   url: null, // Defaults to current url
-  createLinkedinShareButton: function() {
+  createLinkedinShareButton: Ember.on('didInsertElement', function() {
     var self = this;
     this.socialApiClient.load().then(function(IN) {
       self.IN = IN;
@@ -32,9 +32,9 @@ export default Ember.Component.extend({
         self.$().attr('href', '#');
       }
     });
-  }.on('didInsertElement'),
+  }),
 
-  showShareDialog: function(e){
+  showShareDialog: Ember.on('click', function(e){
     var self = this;
     this.socialApiClient.clicked(this.get('url') || window.location.href);
     if (this.get('useLinkedinUi')) { return; }
@@ -51,5 +51,5 @@ export default Ember.Component.extend({
       });
     }
     e.preventDefault();
-  }.on('click')
+  })
 });
