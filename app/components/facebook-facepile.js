@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   url: null, // Defaults to specified Facebook app_id
   'fb-colorscheme': 'light', // Valid options: 'light' or 'dark'
 
-  createFacebookFacepile: function() {
+  createFacebookFacepile: Ember.on('didInsertElement', function() {
     var self = this;
     this.socialApiClient.load().then(function(FB) {
       if (self._state !== 'inDOM') { return; }
@@ -19,10 +19,10 @@ export default Ember.Component.extend({
       }
       var fbColorScheme = self.get('fb-colorscheme');
       if (fbColorScheme) {
-        attrs.push('data-colorscheme="' + fbColorScheme + '"')
+        attrs.push('data-colorscheme="' + fbColorScheme + '"');
       }
       self.$().html('<div class="fb-facepile" ' + attrs.join(' ') + '></div>');
       FB.XFBML.parse(self.get('element'));
     });
-  }.on('didInsertElement')
+  })
 });

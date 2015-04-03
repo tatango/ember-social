@@ -13,16 +13,16 @@ export default Ember.Component.extend({
   width: null, // The maximum width of the rendered Tweet in whole pixels. This value should be between 250 and 550 pixels.
   align: null, // Float the Tweet left, right, or center relative to its container.
 
-  loadTwitterClient: function() {
+  loadTwitterClient: Ember.on('didInsertElement', function() {
     var self = this;
     this.socialApiClient.load().then(function(twttr) {
       if (self._state !== 'inDOM') { return; }
       self.twttr = twttr;
       self.trigger('twitterLoaded');
     });
-  }.on('didInsertElement'),
+  }),
 
-  createTwitterCard: function() {
+  createTwitterCard: Ember.on('twitterLoaded', function() {
     var tweetId = this.get('tweet-id');
     if (tweetId) {
       this.twttr.widgets.createTweet(tweetId, this.get('element'), {
@@ -38,5 +38,5 @@ export default Ember.Component.extend({
         Ember.Logger.debug('Twitter Embedded Tweet inserted.');
       });
     }
-  }.on('twitterLoaded')
+  })
 });

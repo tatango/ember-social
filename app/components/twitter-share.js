@@ -16,7 +16,7 @@ export default Ember.Component.extend({
                  // This option does nothing when tagName is 'a'
 
   attributeBindings: ['webIntentUrl:href'],
-  webIntentUrl: function(){
+  webIntentUrl: Ember.computed('useWebIntent', 'url', 'text', 'via', 'related', 'hashtags', function(){
     var intentUrl = 'https://twitter.com/intent/tweet',
       intentParams = [],
       params = [
@@ -36,18 +36,18 @@ export default Ember.Component.extend({
     });
 
     return intentUrl + '?' + intentParams.join('&');
-  }.property('useWebIntent', 'url', 'text', 'via', 'related', 'hashtags'),
+  }),
 
-  loadTwitterClient: function() {
+  loadTwitterClient: Ember.on('didInsertElement', function() {
     var self = this;
     this.socialApiClient.load().then(function(twttr) {
       if (self._state !== 'inDOM') { return; }
       self.twttr = twttr;
       self.trigger('twitterLoaded');
     });
-  }.on('didInsertElement'),
+  }),
 
-  createTwitterShareButton: function() {
+  createTwitterShareButton: Ember.on('twitterLoaded', function() {
     if (this.get('useWebIntent')) { return; }
     this.twttr.widgets.createShareButton(
       this.get('url'),
@@ -59,6 +59,6 @@ export default Ember.Component.extend({
         Ember.Logger.debug('Twitter Share Button created.');
       }
     );
-  }.on('twitterLoaded')
+  })
 
 });

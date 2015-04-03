@@ -22,7 +22,7 @@ export default Ember.Component.extend({
   text: null, // Defaults to current page title
   "fb-layout": "icon_link", // Valid options: "box_count", "button_count", "button", "link", "icon_link", or "icon"
 
-  createFacebookShareButton: function() {
+  createFacebookShareButton: Ember.on('didInsertElement', function() {
     var self = this;
     this.socialApiClient.load().then(function(FB) {
       self.FB = FB;
@@ -43,9 +43,9 @@ export default Ember.Component.extend({
         self.$().attr('href', '#');
       }
     });
-  }.on('didInsertElement'),
+  }),
 
-  showShareDialog: function(e){
+  showShareDialog: Ember.on('click', function(e){
     this.socialApiClient.clicked({
       url: this.get('url'),
       componentName: 'facebook-share'
@@ -75,5 +75,5 @@ export default Ember.Component.extend({
       });
     }
     e.preventDefault();
-  }.on('click')
+  })
 });
