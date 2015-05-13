@@ -5,6 +5,9 @@ import Ember from 'ember';
 var facebookScriptPromise;
 
 export default Ember.Object.extend({
+  env: Ember.computed(function() {
+    return this.container.lookupFactory('config:environment');
+  }),
   /*
    * A tracking object implementing `shared(serviceName, payload)` and/or
    * `clicked(serviceName, payload)` can be set on this object, and will
@@ -18,24 +21,36 @@ export default Ember.Object.extend({
    * for the facebook-share component.
    *
    * You can simply specify it in the handlebars when using this component, but this
-   * component will also look for a global FACEBOOK_APP_ID or a meta tag of the form:
+   * component will also look for a FACEBOOK_APP_ID in env, a global, or a meta tag of the form:
    *
    *   <meta property="fb:app_id" content="[FB_APP_ID]" />
    */
-  appId: function(){
-    return Ember.$("meta[property='fb:app_id']").attr('content') || window.FACEBOOK_APP_ID;
+  appId: function(id){
+    return id || this.get('env').FACEBOOK_APP_ID || Ember.$("meta[property='fb:app_id']").attr('content') || window.FACEBOOK_APP_ID;
   },
 
-  load: function() {
-    var self = this;
-    if (!facebookScriptPromise) {
+  currentId: null,
+  updateCurrentId: function(id) {
+    if(id !== this.get('currentId')) {
+      this.set('currentId', id);
+      this.set('idIsUpdated', true);
+    } else {
+      this.set('idIsUpdated', false);
+    }
+  },
+  currentIdIsUpdated: false,
+
+  load: function(options) {
+    var appId = this.appId(options && options.appId);
+    this.updateCurrentId(appId);
+    if (!facebookScriptPromise || this.get('currentIdIsUpdated')) {
       facebookScriptPromise = new Ember.RSVP.Promise(function(resolve/*, reject*/) {
         if (Ember.$('#fb-root').length === 0) {
           Ember.$('body').append('<div id="fb-root"></div>');
         }
         window.fbAsyncInit = function() {
           FB.init({
-            appId      : self.appId(),
+            appId      : appId,
             xfbml      : true,
             version    : 'v2.1'
           });
