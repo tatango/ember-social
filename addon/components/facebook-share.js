@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import LoadWithOptionsMixin from 'ember-social/mixins/load-with-options';
 
 /*
  * Show a button that pops up the Facebook Share dialog.
@@ -8,7 +9,7 @@ import Ember from 'ember';
  * tracking object. When using without specifying a tagName, click
  * tracking is not supported due to restrictions of the Facebook SDK.
  */
-export default Ember.Component.extend({
+export default Ember.Component.extend(LoadWithOptionsMixin, {
   socialApiClient: null, // injected
 
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
@@ -21,7 +22,7 @@ export default Ember.Component.extend({
 
   createFacebookShareButton: Ember.on('didInsertElement', function() {
     var self = this;
-    this.socialApiClient.load().then(function(FB) {
+    this.loadSocialApiClient().then(function(FB) {
       self.FB = FB;
       if (self._state !== 'inDOM') { return; }
       if (self.get('useFacebookUi')) {

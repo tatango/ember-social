@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import LoadWithOptionsMixin from 'ember-social/mixins/load-with-options';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(LoadWithOptionsMixin, {
   socialApiClient: null, //injected
 
   url: null, // Defaults to specified Facebook app_id
@@ -8,7 +9,7 @@ export default Ember.Component.extend({
 
   createFacebookFacepile: Ember.on('didInsertElement', function() {
     var self = this;
-    this.socialApiClient.load().then(function(FB) {
+    this.loadSocialApiClient().then(function(FB) {
       if (self._state !== 'inDOM') { return; }
       var attrs = [];
       var url = self.get('url');
