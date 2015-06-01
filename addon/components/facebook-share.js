@@ -57,7 +57,7 @@ export default Ember.Component.extend({
         },
         function(response) {
           if (response && !response.error_code) {
-            Ember.Logger.debug('Posting completed.');
+            self.socialApiClient.shared('facebook', response);
           } else {
             Ember.Logger.error('Error while posting.');
           }
