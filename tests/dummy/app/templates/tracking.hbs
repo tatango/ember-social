@@ -85,6 +85,6 @@
 
   <p>The tracking service you define should be injected onto the api-client classes as demonstrated in this dummy app. (See <code>tests/dummy/app/initializers/tracking.js</code>).</p>
 
-  <p>* The <code>\{{facebook-share}}</code> component is is subject to the Facebook SDK's restrictions as to what can be tracked. Specifically, click tracking is only
-  available when using the component with <code>tagName="a"</code> (i.e. not the standard Facebook UI), and share tracking is not available. (In theory, this addon could support share tracking in the case that the user grants or has previously granted your Facebook app <code>publish_action</code> permission.)</p>
+  <p>* The <code>\{{facebook-share}}</code> component is is subject to the Facebook SDK's restrictions as to what can be tracked. Specifically, click and share tracking is only
+  available when using the component with <code>tagName="a"</code> (i.e. not the standard Facebook UI), and share tracking is only available in the case that the user grants or has previously granted your Facebook app <code>publish_action</code> permission. Facebook calls the callback on share even if the user clicks on the close button on the dialog but if you have the permission from the user and the post was sucessful facebook sends the post_id on the payload.</p>
 </div>

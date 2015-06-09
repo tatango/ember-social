@@ -62,6 +62,13 @@ export default Ember.Object.extend({
     if(tracking.clicked) {
       tracking.clicked('facebook', payload);
     }
+  },
 
+  shared: function(payload) {
+    var tracking = this.tracking;
+    if(!tracking) { return; }
+    if(tracking.shared) {
+      tracking.shared('facebook', payload);
+    }
   }
 });
