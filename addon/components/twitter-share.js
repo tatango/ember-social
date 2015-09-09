@@ -54,7 +54,10 @@ export default Ember.Component.extend({
       this.get('element'),
       {
         count: this.get('count'),
-        text: this.get('text')
+        text: this.get('text'),
+        related: this.get('related'),
+        hashtags: this.get('hashtags'),
+        via: this.get('via')
       }).then(function (/*el*/) {
         Ember.Logger.debug('Twitter Share Button created.');
       }
