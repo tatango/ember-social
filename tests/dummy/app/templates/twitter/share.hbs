@@ -12,7 +12,6 @@
   {{twitter-share}}
 </div>
 
-
 <h2>Custom URL and Text</h2>
 
 <p>Specified url and text attributes. Shares specified url and specified text via standard Twitter UI share button.</p>
@@ -63,7 +62,7 @@
     hashtags='tweet,factory'
     url='http://plyfe.github.io/ember-social'
     text="Help, I'm stuck in a tweet factory."}}
-    Tweet this article
+    Tweet this articlehttps://twitter.com/iamdevloper
   \{{/twitter-share}}
 </code>
 
@@ -78,3 +77,28 @@
     Tweet this article
   {{/twitter-share}}
 </div>
+
+<h2>Via</h2>
+
+<p>Attribute the source of a Tweet to a Twitter username using the via parameter. The attribution will appear in a Tweet as ” via @username” translated into the language of the Tweet author.</p>
+
+<code>
+  \{{twitter-share via='emberjs'}}
+</code>
+
+<h2>Hashtags</h2>
+
+<p>Add a comma-separated list of hashtags to a Tweet using the hashtags parameter. Omit a preceding “#” from each hashtag; the Tweet composer will automatically add the proper space-separated hashtag by language.</p>
+
+<code>
+  \{{twitter-share hashtags="ember,javascript"}}
+</code>
+
+<h2>Related</h2>
+
+<p>Twitter may suggest accounts to follow after the author has successfully posted a Tweet. These displayed accounts are influenced by the via and related 
+web intent parameters.</p>
+
+<code>
+  \{{twitter-share related="emberjs,plyfe"}}
+</code>
