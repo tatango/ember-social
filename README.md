@@ -172,6 +172,35 @@ Share via email.
 {{/email-share}}
 ```
 
+### Social Widget
+
+Current URL:
+
+`{{social-widget}}`
+
+Specified URL: (adds email component)
+
+`{{social-widget url='http://plyfe.github.io/ember-social'}}`
+
+Email Customization: (optional)
+
+`emailLinkText` The text to display for the link in the widget
+`emailBody` The body of the email
+`emailSubject` The subject of the email
+
+`{{social-widget url='http://plyfe.github.io/ember-social' emailLinkText='Email Share' emailBody='I really liked this article, enjoy!' emailSubject='Great Read...'}}`
+
+#### Layouts
+
+`like` False to disable like widgets
+`share` False to disable share widgets
+`facebook` False to disable Facebook widgets
+`twitter` False to disable Twitter widget
+`linkedin` False to disable LinkedIn widget
+`email` False to disable email widget
+
+`{{social-widget like=false linkedin=false}}`
+
 ## Contributing
 
 This README outlines the details of collaborating on this Ember addon.
