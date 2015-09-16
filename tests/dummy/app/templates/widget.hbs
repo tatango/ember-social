@@ -1,0 +1,61 @@
+<h1>Social Widget</h1>
+
+<h2>No Parameters</h2>
+
+<p>No parameters. Shares the current url w/ Facebook like and Facebook/Twitter/LinkedIn share</p>
+
+<code>
+    \{{social-widget}}
+</code>
+
+<div id="no-parameters">
+  {{social-widget}}
+</div>
+
+<h2>Custom URL</h2>
+
+<p>Specified URL for all components. Adds email component when url is provided.</p>
+
+<code>
+  \{{social-widget url='http://plyfe.github.io/ember-social'}}
+</code>
+
+<div id="custom-url">
+  {{social-widget url='http://plyfe.github.io/ember-social'}}
+</div>
+
+<h2>Disable Components</h2>
+
+<p>Disable any social site or share type</p>
+
+<p>Shares only:</p>
+
+<code>
+  \{{social-widget like=false}}
+</code>
+
+<div>
+  {{social-widget like=false}}
+</div>
+
+<p>Disable a site:</p>
+
+<code>
+  \{{social-widget twitter=false}}
+</code>
+
+<div>
+  {{social-widget twitter=false}}
+</div>
+
+<h2>Email Share Customization</h2>
+
+<p>Customize emailLink, emailBody, and emailSubject</p>
+
+<code>
+  \{{social-widget url='http://plyfe.github.io/ember-social' emailLinkText='Email Share' emailBody='I really liked this article, enjoy!' emailSubject='Great Read...'}}
+</code>
+
+<div>
+  {{social-widget url='http://plyfe.github.io/ember-social' emailLinkText='Email Share' emailBody='I really liked this article, enjoy!' emailSubject='Great Read...'}}
+</div>

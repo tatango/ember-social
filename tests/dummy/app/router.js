@@ -6,21 +6,22 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.resource('facebook', function() {
+  this.route('facebook', function() {
     this.route('facepile');
     this.route('like');
     this.route('share');
   });
-  this.resource('twitter', function() {
+  this.route('twitter', function() {
     this.route('share');
     this.route('card');
   });
-  this.resource('linkedin', function() {
+  this.route('linkedin', function() {
     this.route('share');
   });
-  this.resource('email', function() {
+  this.route('email', function() {
     this.route('share');
   });
+  this.route('widget');
   this.route('tracking');
 });
 
