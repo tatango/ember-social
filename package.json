@@ -1,7 +1,7 @@
 {
   "name": "ember-social",
   "version": "0.2.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "An Ember component library for social sharing.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -57,6 +57,7 @@
     "ember-cli-htmlbars": "^1.0.0"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "https://plyfe.github.io/ember-social/"
   }
 }
