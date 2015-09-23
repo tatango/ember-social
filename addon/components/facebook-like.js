@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  socialApiClient: null, // injected
+  socialApiClient: Ember.inject.service('facebook-api-client'),
 
   url: null, // Defaults to current url
   'fb-layout': 'standard', // Valid options: 'standard', 'button_count', 'button', or 'box_count'
@@ -9,7 +9,7 @@ export default Ember.Component.extend({
 
   createFacebookLikeButton: Ember.on('didInsertElement', function() {
     var self = this;
-    this.socialApiClient.load().then(function(FB) {
+    this.get('socialApiClient').load().then(function(FB) {
       if (self._state !== 'inDOM') { return; }
       var attrs = [];
       var url = self.get('url');
@@ -28,5 +28,4 @@ export default Ember.Component.extend({
       FB.XFBML.parse(self.get('element'));
     });
   })
-
 });

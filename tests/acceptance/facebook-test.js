@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
+import { module, test } from 'qunit';
 
 var App;
 
@@ -12,11 +13,11 @@ module('Acceptance: Facebook', {
   }
 });
 
-test('share', function() {
+test('share', function(assert) {
   visit('/facebook/share');
 
   andThen(function() {
-    equal(currentPath(), 'facebook.share');
+    assert.equal(currentPath(), 'facebook.share');
 
     var exampleElementIds = [
       'no-parameters',
@@ -31,19 +32,19 @@ test('share', function() {
 
     Ember.run.later(function() {
       exampleElementIds.forEach(function(exampleId) {
-        equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
+        assert.equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
       });
 
-      equal(find('#tag-name-a a').length, 1, 'Renders anchor tag');
+      assert.equal(find('#tag-name-a a').length, 1, 'Renders anchor tag');
     }, 2500);
   });
 });
 
-test('like', function() {
+test('like', function(assert) {
   visit('/facebook/like');
 
   andThen(function() {
-    equal(currentPath(), 'facebook.like');
+    assert.equal(currentPath(), 'facebook.like');
 
     var exampleElementIds = [
       'no-parameters',
@@ -57,27 +58,7 @@ test('like', function() {
 
     Ember.run.later(function() {
       exampleElementIds.forEach(function(exampleId) {
-        equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
-      });
-    }, 2500);
-  });
-});
-
-test('facepile', function() {
-  visit('/facebook/facepile');
-
-  andThen(function() {
-    equal(currentPath(), 'facebook.facepile');
-
-    var exampleElementIds = [
-      'no-parameters',
-      'custom-url',
-      'custom-colorscheme'
-    ];
-
-    Ember.run.later(function() {
-      exampleElementIds.forEach(function(exampleId) {
-        equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
+        assert.equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
       });
     }, 2500);
   });

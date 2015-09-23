@@ -1,21 +1,25 @@
-{{#if facebookLike}}
-  {{facebook-like url=url fb-layout='button'}}
-{{/if}}
+{{#if hasBlock}}
+  {{yield}}
+{{else}}
+  {{#if facebookLike}}
+    {{facebook-like url=url fb-layout='button'}}
+  {{/if}}
 
-{{#if facebookShare}}
-  {{facebook-share url=url}}
-{{/if}}
+  {{#if facebookShare}}
+    {{facebook-share url=url}}
+  {{/if}}
 
-{{#if twitterShare}}
-  {{twitter-share url=url}}
-{{/if}}
+  {{#if twitterShare}}
+    {{twitter-share url=url}}
+  {{/if}}
 
-{{#if linkedinShare}}
-  {{linkedin-share url=url}}
-{{/if}}
+  {{#if linkedinShare}}
+    {{linkedin-share url=url}}
+  {{/if}}
 
-{{#if emailShare}}
-  {{#email-share subject=emailSubject url=url body=emailBody}}
-      {{emailLinkText}}
-  {{/email-share}}
+  {{#if emailShare}}
+    {{#email-share subject=emailSubject url=url body=emailBody}}
+        {{emailLinkText}}
+    {{/email-share}}
+  {{/if}}
 {{/if}}

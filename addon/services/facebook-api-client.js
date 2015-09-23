@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 var facebookScriptPromise;
 
-export default Ember.Object.extend({
+export default Ember.Service.extend({
   /*
    * A tracking object implementing `shared(serviceName, payload)` and/or
    * `clicked(serviceName, payload)` can be set on this object, and will

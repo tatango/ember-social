@@ -7,7 +7,6 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('facebook', function() {
-    this.route('facepile');
     this.route('like');
     this.route('share');
   });
