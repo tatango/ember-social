@@ -4,7 +4,7 @@ import layout from '../templates/components/social-widget';
 export default Ember.Component.extend({
   classNames: ['social-widget'],
   layout: layout,
-  
+
   url: null,
 
   like: true,
