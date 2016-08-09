@@ -1,6 +1,6 @@
 export default {
   name: 'ember-social-services',
-  initialize: function(container, application){
+  initialize: function(application){
     var facebookPluginComponents = ['facepile', 'like', 'share'];
 
     facebookPluginComponents.forEach(function(plugin) {
