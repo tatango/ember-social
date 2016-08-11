@@ -54,23 +54,3 @@ test('like', function(assert) {
     }, 2500);
   });
 });
-
-test('facepile', function(assert) {
-  visit('/facebook/facepile');
-
-  andThen(function() {
-    assert.equal(currentPath(), 'facebook.facepile');
-
-    var exampleElementIds = [
-      'no-parameters',
-      'custom-url',
-      'custom-colorscheme'
-    ];
-
-    Ember.run.later(function() {
-      exampleElementIds.forEach(function(exampleId) {
-        assert.equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
-      });
-    }, 2500);
-  });
-});
