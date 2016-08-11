@@ -1,11 +1,12 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { moduleForComponent } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { skip } from 'qunit';
 
 moduleForComponent('social-widget', 'Integration | Component | social widget', {
   integration: true
 });
 
-test('it renders', function(assert) {
+skip('it renders', function(assert) {
   assert.expect(2);
 
   // Set any properties with this.set('myProperty', 'value');

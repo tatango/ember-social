@@ -1,22 +1,14 @@
+import { test } from 'qunit';
+import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import Ember from 'ember';
-import startApp from '../helpers/start-app';
 
-var App;
+moduleForAcceptance('Acceptance | twitter');
 
-module('Acceptance: Twitter', {
-  setup: function() {
-    App = startApp();
-  },
-  teardown: function() {
-    Ember.run(App, 'destroy');
-  }
-});
-
-test('share', function() {
+test('share', function(assert) {
   visit('/twitter/share');
 
   andThen(function() {
-    equal(currentPath(), 'twitter.share');
+    assert.equal(currentPath(), 'twitter.share');
 
     var exampleElementIds = [
       'no-parameters',
@@ -28,23 +20,23 @@ test('share', function() {
 
     Ember.run.later(function() {
       exampleElementIds.forEach(function(exampleId) {
-        equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
+        assert.equal(find('#' + exampleId + ' iframe').length, 1, 'Renders ' + exampleId);
       });
 
-      equal(find('#block-provided a').length, 1, 'Renders web intent style');
-      equal(find('#block-provided a').attr('href'), "https://twitter.com/intent/tweet?url=http%3A%2F%2Fexample.com%2Fshare-things&text=Help%2C%20I'm%20stuck%20in%20a%20tweet%20factory.&via=tweetfactory&related=tweet%2Cfactory&hashtags=tweet%2Cfactory", 'Renders href');
+      assert.equal(find('#block-provided a').length, 1, 'Renders web intent style');
+      assert.equal(find('#block-provided a').attr('href'), "https://twitter.com/intent/tweet?url=http%3A%2F%2Fexample.com%2Fshare-things&text=Help%2C%20I'm%20stuck%20in%20a%20tweet%20factory.&via=tweetfactory&related=tweet%2Cfactory&hashtags=tweet%2Cfactory", 'Renders href');
     }, 2500);
   });
 });
 
-test('tweet', function(){
+test('tweet', function(assert){
   visit('/twitter/card');
 
   andThen(function(){
-    equal(currentPath(), 'twitter.card');
+    assert.equal(currentPath(), 'twitter.card');
 
     Ember.run.later(function(){
-      equal(find('.twitter-tweet').length, 2, 'Two twitter tweets were rendered.');
+      assert.equal(find('.twitter-tweet').length, 2, 'Two twitter tweets were rendered.');
     }, 2500);
   });
 });

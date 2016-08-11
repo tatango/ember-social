@@ -1,22 +1,14 @@
+import { test } from 'qunit';
+import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
 import Ember from 'ember';
-import startApp from '../helpers/start-app';
 
-var App;
+moduleForAcceptance('Acceptance | linkedin');
 
-module('Acceptance: LinkedIn', {
-  setup: function() {
-    App = startApp();
-  },
-  teardown: function() {
-    Ember.run(App, 'destroy');
-  }
-});
-
-test('share', function() {
+test('share', function(assert) {
   visit('/linkedin/share');
 
   andThen(function() {
-    equal(currentPath(), 'linkedin.share');
+    assert.equal(currentPath(), 'linkedin.share');
 
     var exampleElementIds = [
       'no-parameters',
@@ -26,10 +18,10 @@ test('share', function() {
 
     Ember.run.later(function() {
       exampleElementIds.forEach(function(exampleId) {
-        equal(find('#' + exampleId + ' .IN-widget').length, 1, 'Renders ' + exampleId);
+        assert.equal(find('#' + exampleId + ' .IN-widget').length, 1, 'Renders ' + exampleId);
       });
 
-      equal(find('#tag-name-a a').length, 1, 'Renders link');
+      assert.equal(find('#tag-name-a a').length, 1, 'Renders link');
     }, 2500);
   });
 });
