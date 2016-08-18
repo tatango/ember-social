@@ -12,10 +12,7 @@ test('share', function(assert) {
 
     var exampleElementIds = [
       'no-parameters',
-      'custom-url-and-text',
-      'count-display-none',
-      'count-display-horizontal',
-      'count-display-vertical'
+      'custom-url-and-text'
     ];
 
     Ember.run.later(function() {

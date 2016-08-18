@@ -12,8 +12,6 @@ export default Ember.Component.extend({
   via: null, // Attribute the source of a Tweet to a Twitter username.
   related: null, // A comma-separated list of accounts related to the content of the shared URI.
   hashtags: null, // A comma-separated list of hashtags to be appended to default Tweet text.
-  count: 'none', // valid values: 'none', 'vertical', or 'horizontal'
-                 // This option does nothing when tagName is 'a'
 
   attributeBindings: ['webIntentUrl:href'],
   webIntentUrl: Ember.computed('useWebIntent', 'url', 'text', 'via', 'related', 'hashtags', function(){
@@ -53,7 +51,6 @@ export default Ember.Component.extend({
       this.get('url'),
       this.get('element'),
       {
-        count: this.get('count'),
         text: this.get('text'),
         via: this.get('via'),
         hashtags: this.get('hashtags'),
