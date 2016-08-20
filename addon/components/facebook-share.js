@@ -9,7 +9,7 @@ import Ember from 'ember';
  * tracking is not supported due to restrictions of the Facebook SDK.
  */
 export default Ember.Component.extend({
-  socialApiClient: null, // injected
+  socialApiClient: Ember.inject.service('facebook-api-client'), // injected
 
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
                   // instead of the standard Facebook share button UI
@@ -21,7 +21,7 @@ export default Ember.Component.extend({
 
   createFacebookShareButton: Ember.on('didInsertElement', function() {
     var self = this;
-    this.socialApiClient.load().then(function(FB) {
+    this.get('socialApiClient').load().then(function(FB) {
       self.FB = FB;
       if (self._state !== 'inDOM') { return; }
       if (self.get('useFacebookUi')) {
@@ -43,7 +43,7 @@ export default Ember.Component.extend({
   }),
 
   showShareDialog: Ember.on('click', function(e){
-    this.socialApiClient.clicked({
+    this.get('socialApiClient').clicked({
       url: this.get('url'),
       componentName: 'facebook-share'
     });
@@ -57,7 +57,7 @@ export default Ember.Component.extend({
         },
         function(response) {
           if (response && !response.error_code) {
-            self.socialApiClient.shared('facebook', response);
+            self.get('socialApiClient').shared('facebook', response);
           } else {
             Ember.Logger.error('Error while posting.');
           }
@@ -67,9 +67,7 @@ export default Ember.Component.extend({
     if (this.FB) {
       showDialog(this.FB);
     } else {
-      this.socialApiClient.load().then(function(FB) {
-        showDialog(FB);
-      });
+      this.get('socialApiClient').load().then(FB => showDialog(FB));
     }
     e.preventDefault();
   })

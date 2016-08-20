@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  socialApiClient: null, // injected
+  socialApiClient: Ember.inject.service('twitter-api-client'), // injected
 
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
                   // instead of the standard Twitter share button UI
@@ -38,7 +38,7 @@ export default Ember.Component.extend({
 
   loadTwitterClient: Ember.on('didInsertElement', function() {
     var self = this;
-    this.socialApiClient.load().then(function(twttr) {
+    this.get('socialApiClient').load().then(function(twttr) {
       if (self._state !== 'inDOM') { return; }
       self.twttr = twttr;
       self.trigger('twitterLoaded');

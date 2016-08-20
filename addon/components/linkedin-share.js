@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  socialApiClient: null, // injected
+  socialApiClient: Ember.inject.service('linkedin-api-client'), // injected
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
                   // instead of the standard Linkedin share button UI
   isCustomLink: Ember.computed.equal('tagName','a'),
@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   url: null, // Defaults to current url
   createLinkedinShareButton: Ember.on('didInsertElement', function() {
     var self = this;
-    this.socialApiClient.load().then(function(IN) {
+    this.get('socialApiClient').load().then(function(IN) {
       self.IN = IN;
       self.shareHandlerName = IN.shareHandlerName;
       if (self._state !== 'inDOM') { return; }
@@ -36,7 +36,7 @@ export default Ember.Component.extend({
 
   showShareDialog: Ember.on('click', function(e){
     var self = this;
-    this.socialApiClient.clicked(this.get('url') || window.location.href);
+    this.get('socialApiClient').clicked(this.get('url') || window.location.href);
     if (this.get('useLinkedinUi')) { return; }
     function showDialog(IN) {
       IN.UI.Share().params({
@@ -46,7 +46,7 @@ export default Ember.Component.extend({
     if (this.IN) {
       showDialog(this.IN);
     } else {
-      this.socialApiClient.load().then(function(IN) {
+      this.get('socialApiClient').load().then(function(IN) {
         showDialog(IN);
       });
     }
