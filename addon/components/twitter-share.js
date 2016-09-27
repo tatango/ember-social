@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  socialApiClient: null, // injected
+  socialApiClient: Ember.inject.service('twitter-api-client'), // injected
 
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
                   // instead of the standard Twitter share button UI
@@ -12,8 +12,6 @@ export default Ember.Component.extend({
   via: null, // Attribute the source of a Tweet to a Twitter username.
   related: null, // A comma-separated list of accounts related to the content of the shared URI.
   hashtags: null, // A comma-separated list of hashtags to be appended to default Tweet text.
-  count: 'none', // valid values: 'none', 'vertical', or 'horizontal'
-                 // This option does nothing when tagName is 'a'
 
   attributeBindings: ['webIntentUrl:href'],
   webIntentUrl: Ember.computed('useWebIntent', 'url', 'text', 'via', 'related', 'hashtags', function(){
@@ -40,7 +38,7 @@ export default Ember.Component.extend({
 
   loadTwitterClient: Ember.on('didInsertElement', function() {
     var self = this;
-    this.socialApiClient.load().then(function(twttr) {
+    this.get('socialApiClient').load().then(function(twttr) {
       if (self._state !== 'inDOM') { return; }
       self.twttr = twttr;
       self.trigger('twitterLoaded');
@@ -53,7 +51,6 @@ export default Ember.Component.extend({
       this.get('url'),
       this.get('element'),
       {
-        count: this.get('count'),
         text: this.get('text'),
         via: this.get('via'),
         hashtags: this.get('hashtags'),

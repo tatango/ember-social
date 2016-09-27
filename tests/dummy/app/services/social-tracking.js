@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-export default Ember.Object.extend({
+export default Ember.Service.extend({
   twitterClickCount: 0,
   twitterShareCount: 0,
   linkedinClickCount: 0,

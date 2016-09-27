@@ -26,6 +26,18 @@ Specifying Actions:
 
 `{{facebook-like fb-action='recommend'}}`
 
+Specify whether to include faces:
+
+`{{facebook-like fb-show-faces='false'}}`
+
+Specify whether to include the share button:
+
+`{{facebook-like fb-share='false'}}`
+
+Specify width and size properties:
+
+`{{facebook-like fb-width='200' fb-size='large'}}`
+
 ##### Layouts
 
 Use the `fb-layout` property for specifying different layouts:
@@ -66,22 +78,12 @@ As an 'a' tag:
 {{/facebook-share}}
 ```
 
-#### Facepile
-
-Current URL:
-
-`{{facebook-facepile}}`
-
-Specified URL:
-
-`{{facebook-facepile url='http://plyfe.github.io/ember-social'}}`
-
 ##### Themes
 
 `light`
 `dark`
 
-`{{facebook-facepile fb-colorscheme='dark'}}`
+`{{facebook-share fb-colorscheme='dark'}}`
 
 ### Twitter
 
@@ -123,7 +125,7 @@ Twitter SDK can take several additional tags for constructing a tweet:
 `related` Related accounts for Twitter to suggest to follow after the tweet is sent
 `via` The account to @ as responsible for the share
 
-`{{twitter-share via='tweetfactory' related='tweet,factory' hashtags='tweet,factory'}}` 
+`{{twitter-share via='tweetfactory' related='tweet,factory' hashtags='tweet,factory'}}`
 
 #### Card
 
@@ -236,7 +238,6 @@ For more information on using ember-cli, visit [http://www.ember-cli.com/](http:
 ### TODO
 
 * Implement click/share tracking for `{{facebook-like}}`
-* Implement click/share tracking for `{{facebook-facepile}}`
 
 ### Contributors
 

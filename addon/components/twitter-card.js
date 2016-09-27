@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  socialApiClient: null, // injected
+  socialApiClient: Ember.inject.service('twitter-api-client'), // injected
 
   "tweet-id": null, // required - id of the tweet that you want to embed
   cards: "hidden", // When set to hidden, links in a Tweet are not expanded to photo, video, or link previews.
@@ -15,7 +15,7 @@ export default Ember.Component.extend({
 
   loadTwitterClient: Ember.on('didInsertElement', function() {
     var self = this;
-    this.socialApiClient.load().then(function(twttr) {
+    this.get('socialApiClient').load().then(function(twttr) {
       if (self._state !== 'inDOM') { return; }
       self.twttr = twttr;
       self.trigger('twitterLoaded');

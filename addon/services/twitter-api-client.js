@@ -4,7 +4,7 @@ import Ember from 'ember';
 
 var twitterScriptPromise;
 
-export default Ember.Object.extend({
+export default Ember.Service.extend({
   /*
    * A tracking object implementing `shared(serviceName, payload)` and/or
    * `clicked(serviceName, payload)` can be set on this object, and will
@@ -18,7 +18,7 @@ export default Ember.Object.extend({
         window.twttr = (function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0],
             t = window.twttr || {};
-          if (d.getElementById(id)) {return;}
+          if (d.getElementById(id)) { return window.twttr; }
           js = d.createElement(s);
           js.id = id;
           js.src = "https://platform.twitter.com/widgets.js";
