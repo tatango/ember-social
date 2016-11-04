@@ -1,6 +1,6 @@
 {
   "name": "ember-social",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "An Ember component library for social sharing.",
   "directories": {
     "doc": "doc",
