@@ -17,6 +17,7 @@ export default Ember.Component.extend({
   useFacebookUi: Ember.computed.not('isCustomLink'),
 
   url: null, // Defaults to current url
+  method: 'share', // Valid options: 'share', 'feed'
   "fb-layout": "icon_link", // Valid options: "box_count", "button_count", "button", "link", "icon_link", or "icon"
 
   createFacebookShareButton: Ember.on('didInsertElement', function() {
@@ -49,12 +50,24 @@ export default Ember.Component.extend({
     });
     if (this.get('useFacebookUi')) { return; } // doesn't need a click handler
     var self = this;
+    var shareAttrs;
+    if (this.get('method') === 'feed') {
+      shareAttrs = {
+        method: 'feed',
+        link: this.get('url'),
+        name: this.get('name'),
+        caption: this.get('caption'),
+        description: this.get('description'),
+      }
+    } else {
+      shareAttrs = {
+        method: 'share',
+        href: this.get('url'),
+      }
+    }
     function showDialog(FB) {
       FB.ui(
-        {
-          method: 'share',
-          href: self.get('url'),
-        },
+        shareAttrs,
         function(response) {
           if (response && !response.error_code) {
             self.get('socialApiClient').shared('facebook', response);
