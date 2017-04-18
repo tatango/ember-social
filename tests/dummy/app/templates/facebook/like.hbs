@@ -69,3 +69,14 @@
 <div id='layout-box-count'>
   {{facebook-like fb-layout='box_count'}}
 </div>
+
+<h2>Loading the Facebook SDK yourself</h2>
+
+<code>
+  \{{facebook-like facebookSDK=/*a promise that resolves with the FB object*/}}
+</code>
+
+<div id='custom-load-sdk'>
+  {{facebook-like facebookSDK=facebookSDK}}
+</div>
+

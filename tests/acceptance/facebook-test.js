@@ -1,8 +1,21 @@
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';
+import startApp from '../../tests/helpers/start-app';
 import Ember from 'ember';
 
-moduleForAcceptance('Acceptance | facebook');
+moduleForAcceptance('Acceptance | facebook', {
+  beforeEach: function() {
+    this.application = startApp();
+    if (window.FB) {
+      // Acceptance testing creates an unrealistic scenario where the app is
+      // reloaded between tests without reloading the page and reseting the
+      // window object. After initially loading the SDK, stub FB in the service
+      // with the loaded SDK.
+      var facebookAPI = this.application.__container__.lookup('service:facebook-api-client');
+      facebookAPI.set('facebookSDK', Ember.RSVP.resolve(window.FB));
+    }
+  }
+});
 
 test('share', function(assert) {
   visit('/facebook/share');
@@ -18,7 +31,8 @@ test('share', function(assert) {
       'layout-button-count',
       'layout-button',
       'layout-link',
-      'layout-icon'
+      'layout-icon',
+      'custom-load-sdk'
     ];
 
     Ember.run.later(function() {
@@ -44,7 +58,8 @@ test('like', function(assert) {
       'layout-standard',
       'layout-button-count',
       'layout-button',
-      'layout-box-count'
+      'layout-box-count',
+      'custom-load-sdk'
     ];
 
     Ember.run.later(function() {

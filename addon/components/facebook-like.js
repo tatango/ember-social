@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   socialApiClient: Ember.inject.service('facebook-api-client'), // injected
 
   url: null, // Defaults to current url
+  facebookSDK: null,
   'fb-layout': 'standard', // Valid options: 'standard', 'button_count', 'button', or 'box_count'
   'fb-action': 'like', // Valid options: 'like' or 'recommend'
   'fb-show-faces': 'true',
@@ -12,6 +13,9 @@ export default Ember.Component.extend({
   'fb-width': null,
 
   createFacebookLikeButton: Ember.on('didInsertElement', function() {
+    var facebookSDK = this.get('facebookSDK');
+    if (facebookSDK) { this.set('socialApiClient.facebookSDK', facebookSDK); }
+
     var self = this;
     this.get('socialApiClient').load().then(function(FB) {
       if (self._state !== 'inDOM') { return; }
