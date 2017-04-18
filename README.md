@@ -85,6 +85,27 @@ As an 'a' tag:
 
 `{{facebook-share fb-colorscheme='dark'}}`
 
+##### Loading the Facebook SDK
+
+The addon will load the Facebook SDK for you when needed. However, if your app or another addon in your project also requires the SDK, you should consider loading it yourself to avoid conflicts.
+You can pass a promise that resolves with the initialized `FB` object by overriding the `facebookSDK` property.
+
+You can pass the promise to the component directly.
+
+`{{facebook-share facebookSDK=<insert a promise that resolves with the FB object>}}`
+
+This can get tedious if you're using many buttons. In that case, you can override the property by extending the `facebook-api-client` service.
+
+```javascript
+import FacebookApiClientService from 'ember-social/services/facebook-api-client';
+
+export default FacebookApiClientService.extend({
+
+  facebookSDK: /* <insert a promise that resolves with the FB object> */,
+
+});
+```
+
 ### Twitter
 
 #### Share

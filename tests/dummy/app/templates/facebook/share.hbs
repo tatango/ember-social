@@ -91,3 +91,12 @@
   {{/facebook-share}}
 </div>
 
+<h2>Load the Facebook SDK yourself</h2>
+
+<code>
+  \{{facebook-like facebookSDK=/*a promise that resolves with the FB object*/}}
+</code>
+
+<div id='custom-load-sdk'>
+  {{facebook-like facebookSDK=facebookSDK}}
+</div>

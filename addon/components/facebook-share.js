@@ -17,9 +17,13 @@ export default Ember.Component.extend({
   useFacebookUi: Ember.computed.not('isCustomLink'),
 
   url: null, // Defaults to current url
+  facebookSDK: null,
   "fb-layout": "icon_link", // Valid options: "box_count", "button_count", "button", "link", "icon_link", or "icon"
 
   createFacebookShareButton: Ember.on('didInsertElement', function() {
+    var facebookSDK = this.get('facebookSDK');
+    if (facebookSDK) { this.set('socialApiClient.facebookSDK', facebookSDK); }
+
     var self = this;
     this.get('socialApiClient').load().then(function(FB) {
       self.FB = FB;
