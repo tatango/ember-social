@@ -1,1 +1,0 @@
-[2,"Logger",62,"addon/components/facebook-share.js","            self.get('socialApiClient').shared('facebook', response);\n          } else {\n            Ember.Logger.error('Error while posting.');\n          }\n        }"]

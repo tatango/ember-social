@@ -13,14 +13,6 @@
 /connect.lock
 /coverage/
 /libpeerconnection.log
-<<<<<<< HEAD
-npm-debug.log
-testem.log
-
-# sublime
-*.sublime-project
-*.sublime-workspace
-=======
 /npm-debug.log*
 /testem.log
 /yarn-error.log
@@ -29,4 +21,3 @@ testem.log
 /.node_modules.ember-try/
 /bower.json.ember-try
 /package.json.ember-try
->>>>>>> 0e5d88f... message
