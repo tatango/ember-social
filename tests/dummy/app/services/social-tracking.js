@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 
-export default Ember.Service.extend({
+export default Service.extend({
   twitterClickCount: 0,
   twitterShareCount: 0,
   linkedinClickCount: 0,
@@ -9,13 +9,11 @@ export default Ember.Service.extend({
   facebookShareCount: 0,
   emailClickCount: 0,
 
-  shared: function(serviceName, payload) {
-    console.log('shared', serviceName, payload);
+  shared: function(serviceName) {
     this.incrementProperty(serviceName + 'ShareCount');
   },
 
-  clicked: function(serviceName, payload) {
-    console.log('clicked', serviceName, payload);
+  clicked: function(serviceName) {
     this.incrementProperty(serviceName + 'ClickCount');
   }
 });

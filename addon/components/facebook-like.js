@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  socialApiClient: Ember.inject.service('facebook-api-client'), // injected
+export default Component.extend({
+  socialApiClient: service('facebook-api-client'), // injected
 
   url: null, // Defaults to current url
   'fb-layout': 'standard', // Valid options: 'standard', 'button_count', 'button', or 'box_count'
@@ -11,7 +12,8 @@ export default Ember.Component.extend({
   'fb-share': 'true',
   'fb-width': null,
 
-  createFacebookLikeButton: Ember.on('didInsertElement', function() {
+  didInsertElement() {
+    this._super(...arguments);
     var self = this;
     this.get('socialApiClient').load().then(function(FB) {
       if (self._state !== 'inDOM') { return; }
@@ -44,9 +46,9 @@ export default Ember.Component.extend({
       if (fbShare) {
         attrs.push('data-share="' + fbShare + '"');
       }
-      self.$().html('<div class="fb-like" ' + attrs.join(' ') +'></div>');
+      self.element.innerHTML = '<div class="fb-like" ' + attrs.join(' ') +'></div>'
       FB.XFBML.parse(self.get('element'));
     });
-  })
+  }
 
 });

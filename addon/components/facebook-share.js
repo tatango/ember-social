@@ -1,3 +1,6 @@
+import { equal, not } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import Ember from 'ember';
 
 /*
@@ -8,18 +11,19 @@ import Ember from 'ember';
  * tracking object. When using without specifying a tagName, click
  * tracking is not supported due to restrictions of the Facebook SDK.
  */
-export default Ember.Component.extend({
-  socialApiClient: Ember.inject.service('facebook-api-client'), // injected
+export default Component.extend({
+  socialApiClient: service('facebook-api-client'), // injected
 
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
                   // instead of the standard Facebook share button UI
-  isCustomLink: Ember.computed.equal('tagName','a'),
-  useFacebookUi: Ember.computed.not('isCustomLink'),
+  isCustomLink: equal('tagName','a'),
+  useFacebookUi: not('isCustomLink'),
 
   url: null, // Defaults to current url
   "fb-layout": "icon_link", // Valid options: "box_count", "button_count", "button", "link", "icon_link", or "icon"
 
-  createFacebookShareButton: Ember.on('didInsertElement', function() {
+  didInsertElement() {
+    this._super(...arguments);
     var self = this;
     this.get('socialApiClient').load().then(function(FB) {
       self.FB = FB;
@@ -34,15 +38,14 @@ export default Ember.Component.extend({
         if (fbLayout) {
           attrs.push('data-layout="' + fbLayout + '"');
         }
-        self.$().html('<div class="fb-share-button" ' + attrs.join(' ') +'></div>');
+        self.element.innerHTML = '<div class="fb-share-button" ' + attrs.join(' ') +'></div>'
         FB.XFBML.parse(self.get('element'));
       } else {
-        self.$().attr('href', '#');
+        self.element.setAttribute('href', '#');
       }
     });
-  }),
-
-  showShareDialog: Ember.on('click', function(e){
+  },
+  click(e) {
     this.get('socialApiClient').clicked({
       url: this.get('url'),
       componentName: 'facebook-share'
@@ -70,5 +73,5 @@ export default Ember.Component.extend({
       this.get('socialApiClient').load().then(FB => showDialog(FB));
     }
     e.preventDefault();
-  })
+  }
 });

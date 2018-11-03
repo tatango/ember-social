@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { getOwner } from '@ember/application';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model: function(){
-    return this.container.lookup('service:social-tracking');
+    return getOwner(this).lookup('service:social-tracking');
   }
 });

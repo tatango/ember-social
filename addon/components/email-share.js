@@ -1,15 +1,16 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   tracking: null, // optional injection
   subject: '',
   body: null,
   url: '',
-  bodyText: Ember.computed('body', function(){
+  bodyText: computed('body', function(){
     var body = this.get('body');
     return body ? body + '\n\n' : '';
   }),
-  href: Ember.computed('subject', 'bodyText', 'shareUrl', function(){
+  href: computed('subject', 'bodyText', 'shareUrl', function(){
     var subject = encodeURIComponent(this.get('subject'));
     var body = encodeURIComponent(this.get('bodyText') + this.get('url'));
     return  "mailto:?subject="+ subject + "&body="+ body;
@@ -17,12 +18,14 @@ export default Ember.Component.extend({
   tagName: 'a',
   linkTarget: '_top',
   attributeBindings: ['linkTarget:target', 'href'],
-  trackClick: Ember.on('click', function(){
+
+  click() {
     if (this.tracking && this.tracking.clicked) {
 
       this.tracking.clicked('email', {
         url: this.get('shareUrl')
       });
     }
-  })
+  }
+
 });
