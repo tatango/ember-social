@@ -9,13 +9,11 @@ export default Service.extend({
   facebookShareCount: 0,
   emailClickCount: 0,
 
-  shared: function(serviceName, payload) {
-    console.log('shared', serviceName, payload);
+  shared: function(serviceName) {
     this.incrementProperty(serviceName + 'ShareCount');
   },
 
-  clicked: function(serviceName, payload) {
-    console.log('clicked', serviceName, payload);
+  clicked: function(serviceName) {
     this.incrementProperty(serviceName + 'ClickCount');
   }
 });

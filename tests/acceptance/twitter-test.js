@@ -1,4 +1,4 @@
-import { find, findAll, currentPath, visit } from '@ember/test-helpers';
+import { currentPath, visit } from '@ember/test-helpers';
 import { later } from '@ember/runloop';
 import { test } from 'qunit';
 import moduleForAcceptance from '../../tests/helpers/module-for-acceptance';

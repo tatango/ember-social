@@ -1,4 +1,3 @@
-import { find } from '@ember/test-helpers';
 import { moduleForComponent } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { skip } from 'qunit';
