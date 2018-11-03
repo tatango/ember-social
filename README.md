@@ -1,11 +1,20 @@
+<<<<<<< HEAD
 # Ember-Social
 
 Ember-Social is an Ember component library for social sharing widgets. Think Tweet buttons, Facebook like buttons, Linked In share buttons, etc.
 
 We welcome contributions. Adding share buttons can be a tedious, annoying part of a front-end developers. Let's make this library make it easy for everyone.
+=======
+my-addon
+==============================================================================
 
-## Installation
+[Short description of the addon.]
+>>>>>>> 0e5d88f... message
 
+Installation
+------------------------------------------------------------------------------
+
+<<<<<<< HEAD
 `ember install ember-social`
 
 ## Usage
@@ -212,9 +221,29 @@ This README outlines the details of collaborating on this Ember addon.
 ### Installation
 
 * `git clone` this repository
-* `npm install`
-* `bower install`
+=======
+```
+ember install my-addon
+```
 
+
+Usage
+------------------------------------------------------------------------------
+
+[Longer description of how to use the addon in apps.]
+
+
+Contributing
+------------------------------------------------------------------------------
+
+### Installation
+
+* `git clone <repository-url>`
+* `cd my-addon`
+>>>>>>> 0e5d88f... message
+* `npm install`
+
+<<<<<<< HEAD
 ### Running Dummy App
 
 The dummy app demonstrates and explains usage quite well.
@@ -230,9 +259,31 @@ To use in your app, follow the instructions for using ember-cli addons at ember-
 * `ember test --server`
 
 ### Building
+=======
+### Linting
 
-* `ember build`
+* `npm run lint:hbs`
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
 
+### Running tests
+
+* `ember test` – Runs the test suite on the current Ember version
+* `ember test --server` – Runs the test suite in "watch mode"
+* `ember try:each` – Runs the test suite against multiple Ember versions
+
+### Running the dummy application
+
+* `ember serve`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+>>>>>>> 0e5d88f... message
+
+License
+------------------------------------------------------------------------------
+
+<<<<<<< HEAD
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
 
 ### TODO
@@ -242,3 +293,6 @@ For more information on using ember-cli, visit [http://www.ember-cli.com/](http:
 ### Contributors
 
 Thanks to Plyfe for sponsoring initial development and open-sourcing. ember-social authors include: Chris LoPresto, Luke Melia, and Danielle Adams.
+=======
+This project is licensed under the [MIT License](LICENSE.md).
+>>>>>>> 0e5d88f... message
