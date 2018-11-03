@@ -1,5 +1,4 @@
 import { bind } from '@ember/runloop';
-import $ from 'jquery';
 import { Promise } from 'rsvp';
 import { guidFor } from '@ember/object/internals';
 import Service from '@ember/service';
@@ -26,11 +25,22 @@ export default Service.extend({
         }
       };
       linkedinScriptPromise = new Promise(function(resolve/*, reject*/) {
-        $.getScript("//platform.linkedin.com/in.js?async=true", function success() {
-          IN.shareHandlerName = shareHandlerName;
-          IN.Event.on(IN, 'systemReady', bind(null, resolve, IN));
-          IN.init();
-        });
+
+        (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//platform.linkedin.com/in.js?async=true";
+          fjs.parentNode.insertBefore(js, fjs);
+          js.onload = function() {
+            IN.shareHandlerName = shareHandlerName;
+            IN.Event.on(IN, 'systemReady', bind(null, resolve, IN));
+            IN.init();
+          }
+        }(document, 'script', 'linkedin-jssdk'));
+
+       
+        
       });
     }
     return linkedinScriptPromise;

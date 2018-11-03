@@ -1,6 +1,5 @@
 import { run } from '@ember/runloop';
 import { Promise } from 'rsvp';
-import $ from 'jquery';
 import Service from '@ember/service';
 
 /* globals FB */
@@ -26,15 +25,18 @@ export default Service.extend({
    *   <meta property="fb:app_id" content="[FB_APP_ID]" />
    */
   appId: function(){
-    return $("meta[property='fb:app_id']").attr('content') || window.FACEBOOK_APP_ID;
+    let metaProperty = document.querySelector("meta[property='fb:app_id']")
+    return ( metaProperty && metaProperty.getAttribute('content') ) || window.FACEBOOK_APP_ID;
   },
 
   load: function() {
     var self = this;
     if (!facebookScriptPromise) {
       facebookScriptPromise = new Promise(function(resolve/*, reject*/) {
-        if ($('#fb-root').length === 0) {
-          $('body').append('<div id="fb-root"></div>');
+        if (!document.querySelector('#fb-root')) {
+          let fbRoot = document.createElement('div');
+          fbRoot.id = 'fb-root';
+          document.body.appendChild(fbRoot);
         }
         window.fbAsyncInit = function() {
           FB.init({

@@ -1,7 +1,6 @@
 /* globals twttr */
 
 import { run } from '@ember/runloop';
-
 import { Promise } from 'rsvp';
 import Service from '@ember/service';
 
