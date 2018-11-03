@@ -1,10 +1,13 @@
 /* globals twttr */
 
-import Ember from 'ember';
+import { run } from '@ember/runloop';
+
+import { Promise } from 'rsvp';
+import Service from '@ember/service';
 
 var twitterScriptPromise;
 
-export default Ember.Service.extend({
+export default Service.extend({
   /*
    * A tracking object implementing `shared(serviceName, payload)` and/or
    * `clicked(serviceName, payload)` can be set on this object, and will
@@ -14,7 +17,7 @@ export default Ember.Service.extend({
   load: function() {
     var self = this;
     if (!twitterScriptPromise) {
-      twitterScriptPromise = new Ember.RSVP.Promise(function(resolve /* , reject */) {
+      twitterScriptPromise = new Promise(function(resolve /* , reject */) {
         window.twttr = (function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0],
             t = window.twttr || {};
@@ -33,7 +36,7 @@ export default Ember.Service.extend({
         }(document, "script", "twitter-wjs"));
 
         twttr.ready(function(twttr) {
-          Ember.run(function(){
+          run(function(){
             self.twttr = twttr;
             self.subscribeToTweetEvent();
             resolve(twttr);

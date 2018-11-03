@@ -1,10 +1,13 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
+import { Promise } from 'rsvp';
+import $ from 'jquery';
+import Service from '@ember/service';
 
 /* globals FB */
 
 var facebookScriptPromise;
 
-export default Ember.Service.extend({
+export default Service.extend({
   /*
    * A tracking object implementing `shared(serviceName, payload)` and/or
    * `clicked(serviceName, payload)` can be set on this object, and will
@@ -23,15 +26,15 @@ export default Ember.Service.extend({
    *   <meta property="fb:app_id" content="[FB_APP_ID]" />
    */
   appId: function(){
-    return Ember.$("meta[property='fb:app_id']").attr('content') || window.FACEBOOK_APP_ID;
+    return $("meta[property='fb:app_id']").attr('content') || window.FACEBOOK_APP_ID;
   },
 
   load: function() {
     var self = this;
     if (!facebookScriptPromise) {
-      facebookScriptPromise = new Ember.RSVP.Promise(function(resolve/*, reject*/) {
-        if (Ember.$('#fb-root').length === 0) {
-          Ember.$('body').append('<div id="fb-root"></div>');
+      facebookScriptPromise = new Promise(function(resolve/*, reject*/) {
+        if ($('#fb-root').length === 0) {
+          $('body').append('<div id="fb-root"></div>');
         }
         window.fbAsyncInit = function() {
           FB.init({
@@ -39,7 +42,7 @@ export default Ember.Service.extend({
             xfbml      : true,
             version    : 'v2.1'
           });
-          Ember.run(function(){
+          run(function(){
             resolve(FB);
           });
         };

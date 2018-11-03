@@ -1,0 +1,2 @@
+[2,"Logger",38,"addon/components/twitter-card.js","        align: this.get('align')\n      }).then(function (/*el*/) {\n        Ember.Logger.debug('Twitter Embedded Tweet inserted.');\n      });\n    }"]
+[2,"Logger",59,"addon/components/twitter-share.js","        related: this.get('related')\n      }).then(function (/*el*/) {\n        Ember.Logger.debug('Twitter Share Button created.');\n      }\n    );"]

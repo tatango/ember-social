@@ -1,11 +1,15 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { equal } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  socialApiClient: Ember.inject.service('twitter-api-client'), // injected
+
+export default Component.extend({
+  socialApiClient: service('twitter-api-client'), // injected
 
   tagName: 'div', // set tagName to 'a' in handlebars to use your own css/content
                   // instead of the standard Twitter share button UI
-  useWebIntent: Ember.computed.equal('tagName', 'a'),
+  useWebIntent: equal('tagName', 'a'),
 
   url: null, // Defaults to current url
   text: null, // Defaults to current page title
@@ -14,7 +18,7 @@ export default Ember.Component.extend({
   hashtags: null, // A comma-separated list of hashtags to be appended to default Tweet text.
 
   attributeBindings: ['webIntentUrl:href'],
-  webIntentUrl: Ember.computed('useWebIntent', 'url', 'text', 'via', 'related', 'hashtags', function(){
+  webIntentUrl: computed('useWebIntent', 'url', 'text', 'via', 'related', 'hashtags', function(){
     var intentUrl = 'https://twitter.com/intent/tweet',
       intentParams = [],
       params = [
@@ -36,29 +40,29 @@ export default Ember.Component.extend({
     return intentUrl + '?' + intentParams.join('&');
   }),
 
-  loadTwitterClient: Ember.on('didInsertElement', function() {
+  didInsertElement() {
+    this._super(...arguments);
     var self = this;
-    this.get('socialApiClient').load().then(function(twttr) {
+    this.get('socialApiClient').load().then((twttr) => {
       if (self._state !== 'inDOM') { return; }
       self.twttr = twttr;
-      self.trigger('twitterLoaded');
+      
+
+      if (this.get('useWebIntent')) { return; }
+      this.twttr.widgets.createShareButton(
+        this.get('url'),
+        this.get('element'),
+        {
+          text: this.get('text'),
+          via: this.get('via'),
+          hashtags: this.get('hashtags'),
+          related: this.get('related')
+        }).then(function (/*el*/) {
+        
+        }
+      );
+
     });
-  }),
-
-  createTwitterShareButton: Ember.on('twitterLoaded', function() {
-    if (this.get('useWebIntent')) { return; }
-    this.twttr.widgets.createShareButton(
-      this.get('url'),
-      this.get('element'),
-      {
-        text: this.get('text'),
-        via: this.get('via'),
-        hashtags: this.get('hashtags'),
-        related: this.get('related')
-      }).then(function (/*el*/) {
-        Ember.Logger.debug('Twitter Share Button created.');
-      }
-    );
-  })
-
+  }
+  
 });

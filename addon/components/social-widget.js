@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { and } from '@ember/object/computed';
+import Component from '@ember/component';
 import layout from '../templates/components/social-widget';
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['social-widget'],
   layout: layout,
   
@@ -25,13 +26,13 @@ export default Ember.Component.extend({
 
   emailSubject: 'Check Out This Link',
 
-  facebookLike: Ember.computed.and('like', 'facebook'),
+  facebookLike: and('like', 'facebook'),
 
-  facebookShare: Ember.computed.and('share', 'facebook'),
+  facebookShare: and('share', 'facebook'),
 
-  twitterShare: Ember.computed.and('share', 'twitter'),
+  twitterShare: and('share', 'twitter'),
 
-  linkedinShare: Ember.computed.and('share', 'linkedin'),
+  linkedinShare: and('share', 'linkedin'),
 
-  emailShare: Ember.computed.and('share', 'email', 'url')
+  emailShare: and('share', 'email', 'url')
 });

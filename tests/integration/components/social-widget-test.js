@@ -1,3 +1,4 @@
+import { find } from '@ember/test-helpers';
 import { moduleForComponent } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { skip } from 'qunit';
@@ -14,7 +15,7 @@ skip('it renders', function(assert) {
 
   this.render(hbs`{{social-widget}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.dom('*').hasText('');
 
   // Template block usage:
   this.render(hbs`
@@ -23,5 +24,5 @@ skip('it renders', function(assert) {
     {{/social-widget}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.dom('*').hasText('template block text');
 });
